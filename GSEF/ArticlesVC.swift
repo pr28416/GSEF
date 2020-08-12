@@ -1,0 +1,84 @@
+//
+//  ArticlesVC.swift
+//  GSEF
+//
+//  Created by Pranav Ramesh on 8/9/20.
+//  Copyright © 2020 Pranav Ramesh. All rights reserved.
+//
+
+import UIKit
+
+class ArticlesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var journal: Journal!
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return journal.articles.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleCell
+        cell.title.text = journal.articles[indexPath.row].title
+        cell.editor.text = journal.articles[indexPath.row].editor
+        cell.dateCreated.text = "Published on \(Date.toString(date: journal.articles[indexPath.row].dateCreated, format: "MMM d, YYYY"))"
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "openArticle", sender: journal.articles[indexPath.row])
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "openArticle" {
+            let VC = segue.destination as! OpenArticleVC
+            VC.article = sender as! Article
+        }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = journal.title
+        journal.articles = Journal.sortArticles(articles: journal.articles)
+    }
+    @IBOutlet weak var tableView: UITableView!
+    
+}
+
+class OpenArticleVC: UIViewController {
+    
+    var article: Article!
+    @IBOutlet weak var articleTitle: UILabel!
+    @IBOutlet weak var articleEditor: UILabel!
+    @IBOutlet weak var articleDateCreated: UILabel!
+    @IBOutlet weak var articleText: UITextView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        articleTitle.text = article.title
+        articleEditor.text = "Editor: \(article.editor)"
+        articleDateCreated.text = Date.toString(date: article.dateCreated, format: "MMM d, YYYY")
+        
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = 15
+        articleText.attributedText = NSAttributedString(string: article.text.replacingOccurrences(of: "  ", with: "\n\n"), attributes: [
+            NSAttributedString.Key.paragraphStyle: style,
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+            NSAttributedString.Key.foregroundColor: UIColor.label
+        ])
+        
+        let width = articleText.frame.size.width
+        let newSize = articleText.sizeThatFits(CGSize(width: width, height: CGFloat.greatestFiniteMagnitude))
+        articleText.frame.size = CGSize(width: max(newSize.width, width), height: newSize.height)
+        
+    }
+    @IBAction func close(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+class ArticleCell: UITableViewCell {
+    
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var editor: UILabel!
+    @IBOutlet weak var dateCreated: UILabel!
+}

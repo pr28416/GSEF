@@ -3,27 +3,43 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		825352FE24E1A0F1002B4565 /* QuizCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825352FD24E1A0F1002B4565 /* QuizCenterVC.swift */; };
+		8253530024E1BA03002B4565 /* QuizCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825352FF24E1BA03002B4565 /* QuizCategoryVC.swift */; };
+		8253530224E1BE83002B4565 /* MultipleChoiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8253530124E1BE83002B4565 /* MultipleChoiceVC.swift */; };
 		82A318AB24E03DD6006BE727 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A318AA24E03DD6006BE727 /* AppDelegate.swift */; };
 		82A318AD24E03DD6006BE727 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A318AC24E03DD6006BE727 /* SceneDelegate.swift */; };
-		82A318AF24E03DD6006BE727 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A318AE24E03DD6006BE727 /* ViewController.swift */; };
+		82A318AF24E03DD6006BE727 /* JournalHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A318AE24E03DD6006BE727 /* JournalHomeVC.swift */; };
 		82A318B224E03DD6006BE727 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82A318B024E03DD6006BE727 /* Main.storyboard */; };
 		82A318B424E03DD7006BE727 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82A318B324E03DD7006BE727 /* Assets.xcassets */; };
 		82A318B724E03DD7006BE727 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82A318B524E03DD7006BE727 /* LaunchScreen.storyboard */; };
+		82A318BF24E043CE006BE727 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A318BE24E043CE006BE727 /* Global.swift */; };
+		82A318C124E044EF006BE727 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82A318C024E044EF006BE727 /* GoogleService-Info.plist */; };
+		82A318C324E05F6B006BE727 /* ArticlesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A318C224E05F6B006BE727 /* ArticlesVC.swift */; };
+		93D7D14A3D0445695ED876BE /* Pods_GSEF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61276ECB083363B26F2B493D /* Pods_GSEF.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		61276ECB083363B26F2B493D /* Pods_GSEF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GSEF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		825352FD24E1A0F1002B4565 /* QuizCenterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCenterVC.swift; sourceTree = "<group>"; };
+		825352FF24E1BA03002B4565 /* QuizCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCategoryVC.swift; sourceTree = "<group>"; };
+		8253530124E1BE83002B4565 /* MultipleChoiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceVC.swift; sourceTree = "<group>"; };
 		82A318A724E03DD6006BE727 /* GSEF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GSEF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82A318AA24E03DD6006BE727 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82A318AC24E03DD6006BE727 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		82A318AE24E03DD6006BE727 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		82A318AE24E03DD6006BE727 /* JournalHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalHomeVC.swift; sourceTree = "<group>"; };
 		82A318B124E03DD6006BE727 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		82A318B324E03DD7006BE727 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82A318B624E03DD7006BE727 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		82A318B824E03DD7006BE727 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82A318BE24E043CE006BE727 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		82A318C024E044EF006BE727 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		82A318C224E05F6B006BE727 /* ArticlesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesVC.swift; sourceTree = "<group>"; };
+		B061B78E9F01A2D961FC1886 /* Pods-GSEF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GSEF.debug.xcconfig"; path = "Target Support Files/Pods-GSEF/Pods-GSEF.debug.xcconfig"; sourceTree = "<group>"; };
+		E9176F24D889BBB4D22D418A /* Pods-GSEF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GSEF.release.xcconfig"; path = "Target Support Files/Pods-GSEF/Pods-GSEF.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +47,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93D7D14A3D0445695ED876BE /* Pods_GSEF.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2662897F23F223E47D8733DD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				61276ECB083363B26F2B493D /* Pods_GSEF.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		614D62E1E11040948C5AFB8D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B061B78E9F01A2D961FC1886 /* Pods-GSEF.debug.xcconfig */,
+				E9176F24D889BBB4D22D418A /* Pods-GSEF.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		82A3189E24E03DD6006BE727 = {
 			isa = PBXGroup;
 			children = (
+				8253530124E1BE83002B4565 /* MultipleChoiceVC.swift */,
 				82A318A924E03DD6006BE727 /* GSEF */,
 				82A318A824E03DD6006BE727 /* Products */,
+				614D62E1E11040948C5AFB8D /* Pods */,
+				2662897F23F223E47D8733DD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,9 +95,14 @@
 			children = (
 				82A318AA24E03DD6006BE727 /* AppDelegate.swift */,
 				82A318AC24E03DD6006BE727 /* SceneDelegate.swift */,
-				82A318AE24E03DD6006BE727 /* ViewController.swift */,
+				82A318C224E05F6B006BE727 /* ArticlesVC.swift */,
+				825352FD24E1A0F1002B4565 /* QuizCenterVC.swift */,
+				825352FF24E1BA03002B4565 /* QuizCategoryVC.swift */,
+				82A318AE24E03DD6006BE727 /* JournalHomeVC.swift */,
+				82A318BE24E043CE006BE727 /* Global.swift */,
 				82A318B024E03DD6006BE727 /* Main.storyboard */,
 				82A318B324E03DD7006BE727 /* Assets.xcassets */,
+				82A318C024E044EF006BE727 /* GoogleService-Info.plist */,
 				82A318B524E03DD7006BE727 /* LaunchScreen.storyboard */,
 				82A318B824E03DD7006BE727 /* Info.plist */,
 			);
@@ -74,9 +116,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 82A318BB24E03DD7006BE727 /* Build configuration list for PBXNativeTarget "GSEF" */;
 			buildPhases = (
+				674F3E4251DA71669060D723 /* [CP] Check Pods Manifest.lock */,
 				82A318A324E03DD6006BE727 /* Sources */,
 				82A318A424E03DD6006BE727 /* Frameworks */,
 				82A318A524E03DD6006BE727 /* Resources */,
+				A3067290E77E155AE4B1F4B4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82A318B724E03DD7006BE727 /* LaunchScreen.storyboard in Resources */,
+				82A318C124E044EF006BE727 /* GoogleService-Info.plist in Resources */,
 				82A318B424E03DD7006BE727 /* Assets.xcassets in Resources */,
 				82A318B224E03DD6006BE727 /* Main.storyboard in Resources */,
 			);
@@ -133,13 +178,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		674F3E4251DA71669060D723 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GSEF-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A3067290E77E155AE4B1F4B4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GSEF/Pods-GSEF-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GSEF/Pods-GSEF-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GSEF/Pods-GSEF-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		82A318A324E03DD6006BE727 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82A318AF24E03DD6006BE727 /* ViewController.swift in Sources */,
+				82A318BF24E043CE006BE727 /* Global.swift in Sources */,
+				8253530224E1BE83002B4565 /* MultipleChoiceVC.swift in Sources */,
+				8253530024E1BA03002B4565 /* QuizCategoryVC.swift in Sources */,
+				82A318AF24E03DD6006BE727 /* JournalHomeVC.swift in Sources */,
+				825352FE24E1A0F1002B4565 /* QuizCenterVC.swift in Sources */,
 				82A318AB24E03DD6006BE727 /* AppDelegate.swift in Sources */,
+				82A318C324E05F6B006BE727 /* ArticlesVC.swift in Sources */,
 				82A318AD24E03DD6006BE727 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,7 +308,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +362,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -282,11 +374,13 @@
 		};
 		82A318BC24E03DD7006BE727 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B061B78E9F01A2D961FC1886 /* Pods-GSEF.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GN7BD9PUXN;
 				INFOPLIST_FILE = GSEF/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,11 +394,13 @@
 		};
 		82A318BD24E03DD7006BE727 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9176F24D889BBB4D22D418A /* Pods-GSEF.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GN7BD9PUXN;
 				INFOPLIST_FILE = GSEF/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
