@@ -37,7 +37,10 @@ class QuizCenterVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fs = Firestore.firestore()
-        getQuizzes(nil)
+        retrieveQuizzes()
+        if quizCategories.count == 0 {
+            getQuizzes(nil)
+        }
     }
     
     @objc func getQuizzes(_ sender: UIRefreshControl?) {
@@ -46,6 +49,7 @@ class QuizCenterVC: UITableViewController {
             if let err = err {
                 print("ERROR: \(err)")
                 if let sender = sender {sender.endRefreshing()}
+                self.showAlert(title: "Error: Could not retrieve data", message: err.localizedDescription)
                 return
             }
             guard let snapshot = snapshot else {return}
@@ -65,14 +69,19 @@ class QuizCenterVC: UITableViewController {
                 if i >= snapshot.documents.count {
                     print("Finished getting quizzes")
                     if let sender = sender {sender.endRefreshing()}
-                    self.quizCategories = tempCategories
+                    quizCategories = tempCategories
+                    saveQuizzes()
                     self.tableView.reloadData()
                 }
             }
         }
     }
     
-    var quizCategories: [Quiz] = []
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Go back", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     @IBAction func refreshChanged(_ sender: UIRefreshControl) {
         getQuizzes(sender)

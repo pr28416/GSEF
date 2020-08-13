@@ -17,9 +17,19 @@ class MultipleChoiceVC: UIViewController {
         case D = 3
     }
     
+    @IBAction func close(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Confirm exit", message: "You haven't finished the multiple choice quiz. Do you still want to exit?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Exit", style: .destructive, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         self.navigationController?.navigationBar.backgroundColor = UIColor(named: "AccentDark1")
         quizTitle.text = quiz.title
+        self.isModalInPresentation = true
         backView.layer.cornerRadius = 10
         backView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         
@@ -29,12 +39,16 @@ class MultipleChoiceVC: UIViewController {
             button.backgroundColor = UIColor(named: "AccentDark1")
         }
         continueButton.layer.cornerRadius = 10
+        palette.layer.cornerRadius = 10
         startQuiz()
     }
     
     @IBOutlet weak var questionView: UIView!
     @IBOutlet var mcqButtonView: [UIView]!
+    @IBOutlet var mcqButtons: [UIButton]!
     @IBOutlet var mcqButtonText: [UILabel]!
+    
+    @IBOutlet weak var palette: UIView!
     
     @IBOutlet weak var backView: UIView!
     
@@ -60,6 +74,9 @@ class MultipleChoiceVC: UIViewController {
         continueButton.isHidden = true
         continueButton.layer.opacity = 0
         questions = randomize(for: quiz)
+        progressBar.setProgress(0, animated: true)
+        score = 0
+        incorrectCount = 0
         askQuestion()
     }
     
@@ -89,6 +106,7 @@ class MultipleChoiceVC: UIViewController {
     func askQuestion() {
         guard questions.count > 0 else {
             print("No questions left")
+            endQuiz()
             return
         }
         
@@ -96,6 +114,11 @@ class MultipleChoiceVC: UIViewController {
         let query = questions.popLast()!
         questionLabel.text = query.question
         currentQuestion = query
+        
+        // Make buttons valid
+        for button in mcqButtons {
+            button.isEnabled = true
+        }
         
         // Get random choices
         let rci = Int.random(in: 0..<4)
@@ -118,13 +141,22 @@ class MultipleChoiceVC: UIViewController {
     }
     
     func chooseOption(for letter: Choice) {
+        // Make buttons invalid
+        for button in mcqButtons {
+            button.isEnabled = false
+        }
+        
+        progressBar.setProgress(Float(quiz.questions.count - questions.count)/Float(quiz.questions.count), animated: true)
+        
         // Correct option selected
         if letter == correctChoice {
             print("Correct answer selected")
+            score += 1
         }
         // Incorrect option selected
         else {
             print("Incorrect answer selected")
+            incorrectCount += 1
             mcqButtonView[letter.rawValue].backgroundColor = UIColor.systemRed
         }
         
@@ -135,6 +167,27 @@ class MultipleChoiceVC: UIViewController {
             self.continueButton.layer.opacity = 100
         } completion: { _ in
             self.continueButton.layoutIfNeeded()
+        }
+    }
+    
+    @IBOutlet weak var progressBar: UIProgressView!
+    
+    func endQuiz() {
+        let alert = UIAlertController(title: "Finished!", message: "Your score was: \(score ?? 0)/\(quiz.questions.count)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Exit", style: .cancel, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    var score: Int! {
+        didSet {
+            questionsCorrect.text = "\(score ?? 0)"
+        }
+    }
+    var incorrectCount: Int! {
+        didSet {
+            questionsIncorrect.text = "\(incorrectCount ?? 0)"
         }
     }
     
@@ -162,6 +215,8 @@ class MultipleChoiceVC: UIViewController {
     
     @IBOutlet weak var quizTitle: UILabel!
     @IBOutlet weak var questionsRemaining: UILabel!
+    @IBOutlet weak var questionsCorrect: UILabel!
+    @IBOutlet weak var questionsIncorrect: UILabel!
     
     struct Question {
         var question: String
@@ -170,7 +225,7 @@ class MultipleChoiceVC: UIViewController {
     
     var questions: [Question]! {
         didSet {
-            questionsRemaining.text = "\(questions.count) questions remaining"
+            questionsRemaining.text = "\(questions.count)"
         }
     }
 }

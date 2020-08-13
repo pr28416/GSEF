@@ -21,6 +21,9 @@ class JournalHomeVC: UITableViewController {
         cell.editor.text = "Chief Editor: \(journals[indexPath.row].editor)"
         cell.desc.text = journals[indexPath.row].desc
         cell.backView.layer.cornerRadius = 10
+        cell.numArticles.layer.cornerRadius = 12
+        cell.numArticles.layer.masksToBounds = true
+        cell.numArticles.text = "\(journals[indexPath.row].articles.count)"
         return cell
     }
     
@@ -43,23 +46,35 @@ class JournalHomeVC: UITableViewController {
 //            refreshControl.attributedTitle = NSAttributedString(string: "Downloading journals...")
 //        refreshControl.addTarget(self, action: #selector(getArticles), for: .valueChanged)
 //        tableView.refreshControl = refreshControl
-        self.getArticles(nil)
+        retrieveJournals()
+        if journals.count == 0 {
+            self.getArticles(nil)
+        }
+        tableView.reloadData()
     }
     
     @IBAction func refreshChanged(_ sender: UIRefreshControl) {
         self.getArticles(sender)
     }
     
-    var journals: [Journal] = []
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Go back", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     var fs: Firestore!
     var ref: DocumentReference!
 
     @objc func getArticles(_ sender: UIRefreshControl?) {
         if let sender = sender {sender.beginRefreshing()}
+//        else {tableView.refreshControl?.beginRefreshing()}
         fs.collection("Journals").getDocuments(completion: { (snapshot, err) in
             if let err = err {
                 print("ERROR: \(err)")
                 if let sender = sender {sender.endRefreshing()}
+                self.showAlert(title: "Error: Could not retrieve data", message: err.localizedDescription)
+//                else {self.tableView.refreshControl?.endRefreshing()}
                 return
             }
             guard let snapshot = snapshot else {return}
@@ -78,6 +93,9 @@ class JournalHomeVC: UITableViewController {
                 self.fs.collection("Journals").document("Categories").collection(category).getDocuments { (query, err) in
                     if let err = err {
                         print("ERROR: \(err)")
+                        if let sender = sender {sender.endRefreshing()}
+                        self.showAlert(title: "Error: Could not retrieve data", message: err.localizedDescription)
+//                        else {self.tableView.refreshControl?.endRefreshing()}
                         return
                     }
                     guard let query = query else {return}
@@ -105,17 +123,17 @@ class JournalHomeVC: UITableViewController {
                     journal.articles = articles
                     tempJournals.append(journal)
                     
-                    print("Added a new journal")
+//                    print("Added a new journal")
                     
                     i += 1
                     if i == categories.count {
                         print("Finished adding all journals")
-                        tempJournals.sort { (j1, j2) -> Bool in
-                            j1.title < j2.title
-                        }
-                        self.journals = tempJournals
+                        tempJournals.sort { (j1, j2) -> Bool in j1.title < j2.title}
+                        journals = tempJournals
                         self.tableView.reloadData()
                         if let sender = sender {sender.endRefreshing()}
+//                        else {self.tableView.refreshControl?.endRefreshing()}
+                        saveJournals()
                     }
                 }
             }
@@ -130,4 +148,5 @@ class JournalCell: UITableViewCell {
     @IBOutlet weak var editor: UILabel!
     @IBOutlet weak var desc: UILabel!
     @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var numArticles: UILabel!
 }

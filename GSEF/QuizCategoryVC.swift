@@ -41,6 +41,11 @@ class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0: self.performSegue(withIdentifier: "openMultipleChoice", sender: quiz)
+        case 1:
+            let alert = UIAlertController(title: "More coming soon!", message: "More features will be coming soon to Practice Options!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+//        case 1: self.performSegue(withIdentifier: "openFlashcards", sender: quiz)
         default: break
         }
     }
@@ -48,7 +53,14 @@ class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "openMultipleChoice" {
             let VC = (segue.destination as! UINavigationController).viewControllers[0] as! MultipleChoiceVC
+            VC.quiz = (sender as! Quiz)
+        }/* else if segue.identifier == "openMatching" {
+            let VC = (segue.destination as! UINavigationController).viewControllers[0] as! MatchingVC
             VC.quiz = sender as! Quiz
+        }*/
+        else if segue.identifier == "openFlashcards" {
+            let VC = (segue.destination as! UINavigationController).viewControllers[0] as! FlashcardVC
+            VC.quiz = (sender as! Quiz)
         }
     }
     
@@ -56,7 +68,9 @@ class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var practiceOptions: [PracticeOption] = [
         PracticeOption(title: "Multiple Choice", image: UIImage(systemName: "list.bullet")),
-        PracticeOption(title: "Matching", image: UIImage(systemName: "rectangle.righthalf.inset.fill.arrow.right"))
+//        PracticeOption(title: "Matching", image: UIImage(systemName: "rectangle.righthalf.inset.fill.arrow.right"))
+//        PracticeOption(title: "Flashcards", image: UIImage(systemName: "rectangle.stack.fill"))
+        PracticeOption(title: "More coming soon!", image: UIImage(systemName: "atom"))
     ]
     
     override func viewDidLoad() {
