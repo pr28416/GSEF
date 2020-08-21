@@ -17,7 +17,9 @@ class AboutVC: UIViewController {
     
     @IBOutlet weak var activateButton: UIButton!
     @IBAction func activatePressed(_ sender: UIButton) {
-        
+        if let url = URL(string: "https://gsefofficial.org") {
+            UIApplication.shared.open(url)
+        }
     }
     
 }

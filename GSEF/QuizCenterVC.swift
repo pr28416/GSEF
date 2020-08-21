@@ -41,6 +41,7 @@ class QuizCenterVC: UITableViewController {
         if quizCategories.count == 0 {
             getQuizzes(nil)
         }
+        
     }
     
     @objc func getQuizzes(_ sender: UIRefreshControl?) {

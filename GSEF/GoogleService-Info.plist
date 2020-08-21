@@ -13,21 +13,21 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.pranavramesh.GSEF</string>
+	<string>com.pranavramesh.GSEFOfficialNew</string>
 	<key>PROJECT_ID</key>
 	<string>gsef-86fb7</string>
 	<key>STORAGE_BUCKET</key>
 	<string>gsef-86fb7.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:85411043309:ios:9a388ae62e8a1c7a1479e4</string>
 	<key>DATABASE_URL</key>
