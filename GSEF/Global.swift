@@ -120,6 +120,7 @@ struct Quiz: Codable {
     var desc: String?
     var questions: [String]
     var answers: [String]
+    var imageName: String
 }
 
 var tempQuestions = [

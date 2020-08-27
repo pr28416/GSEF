@@ -163,9 +163,9 @@ class MultipleChoiceVC: UIViewController {
         mcqButtonView[correctChoice.rawValue].backgroundColor = UIColor.systemGreen
         
         continueButton.isHidden = false
-        UIView.animate(withDuration: 0.3, delay: 0, options: .allowAnimatedContent) {
+        UIView.animate(withDuration: 0.3, animations: {
             self.continueButton.layer.opacity = 100
-        } completion: { _ in
+        }) { (_) in
             self.continueButton.layoutIfNeeded()
         }
     }
@@ -196,9 +196,9 @@ class MultipleChoiceVC: UIViewController {
             view.backgroundColor = UIColor(named: "AccentDark1")
         }
         
-        UIView.animate(withDuration: 0.3, delay: 0, options: .allowAnimatedContent) {
+        UIView.animate(withDuration: 0.3, animations: {
             sender.layer.opacity = 0
-        } completion: { _ in
+        }) { (_) in
             sender.layoutIfNeeded()
         }
         sender.isHidden = true

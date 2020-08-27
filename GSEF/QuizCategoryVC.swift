@@ -64,6 +64,8 @@ class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    @IBOutlet weak var mainBackView: UIView!
+    @IBOutlet weak var mainBackImage: UIImageView!
     var quiz: Quiz!
     
     var practiceOptions: [PracticeOption] = [
@@ -76,6 +78,17 @@ class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = quiz.title
+//        mainBackView.layer.cornerRadius = 20
+//        mainBackView.layer.masksToBounds = true
+//        mainBackView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        mainBackView.layer.mask = {
+            let mask = CAShapeLayer()
+            mask.path = UIBezierPath(roundedRect: mainBackView.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
+            mask.shouldRasterize = true
+            mask.rasterizationScale = UIScreen.main.scale
+            return mask
+        }()
+        mainBackView.layoutSubviews()
     }
     
 }

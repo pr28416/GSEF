@@ -54,15 +54,15 @@ class Flashcard: UIViewController {
     
     @objc func switchView() {
         isTurned = !isTurned
-        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut) {
-            if self.isTurned {
-                self.text.text = self.answer
-            } else {
-                self.text.text = self.question
-            }
-        } completion: { (_) in
-            self.text.layoutIfNeeded()
-        }
+//        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseOut) {
+//            if self.isTurned {
+//                self.text.text = self.answer
+//            } else {
+//                self.text.text = self.question
+//            }
+//        } completion: { (_) in
+//            self.text.layoutIfNeeded()
+//        }
     }
 
 }

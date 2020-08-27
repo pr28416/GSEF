@@ -9,21 +9,29 @@
 import UIKit
 import FirebaseFirestore
 
-class QuizCenterVC: UITableViewController {
+class QuizCenterVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return quizCategories.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "QuizCenterCell", for: indexPath) as! QuizCenterCell
-        cell.backView.layer.cornerRadius = 10
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QuizCenterCell", for: indexPath) as! QuizCenterRectCell
+//        cell.backView.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 10
+        cell.backView.backgroundColor = .clear
+        cell.backgroundView = {
+            let imageView = UIImageView(image: UIImage(named: "cellgray"))
+            imageView.contentMode = .scaleAspectFill
+            return imageView
+        }()
         cell.title.text = quizCategories[indexPath.row].title
+        cell.icon.image = UIImage(named: quizCategories[indexPath.row].imageName)
         // Later put in cell description
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "openQuiz", sender: quizCategories[indexPath.row])
     }
     
@@ -33,15 +41,39 @@ class QuizCenterVC: UITableViewController {
             VC.quiz = sender as! Quiz
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionView.backgroundView = {
+            let imageView = UIImageView(image: UIImage(named: "bluegreen"))
+            imageView.contentMode = .scaleAspectFill
+            return imageView
+        }()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .secondaryLabel
+        refreshControl.addTarget(self, action: #selector(getQuizzes(_:)), for: .valueChanged)
+        collectionView.addSubview(refreshControl)
+        collectionView.alwaysBounceVertical = true
+        
+//        collectionView.collectionViewLayout = {
+//            let layout = UICollectionViewFlowLayout()
+//            layout.minimumInteritemSpacing = 12
+//            layout.minimumLineSpacing = 12
+//
+//            return layout
+//        }()
+        
         fs = Firestore.firestore()
         retrieveQuizzes()
         if quizCategories.count == 0 {
             getQuizzes(nil)
         }
-        
     }
     
     @objc func getQuizzes(_ sender: UIRefreshControl?) {
@@ -65,14 +97,15 @@ class QuizCenterVC: UITableViewController {
                         title: data["Title"] as! String,
                         desc: nil,
                         questions: data["Questions"] as! [String],
-                        answers: data["Answers"] as! [String]
+                        answers: data["Answers"] as! [String],
+                        imageName: data["ImageName"] as! String
                     ))
                 if i >= snapshot.documents.count {
                     print("Finished getting quizzes")
                     if let sender = sender {sender.endRefreshing()}
                     quizCategories = tempCategories
                     saveQuizzes()
-                    self.tableView.reloadData()
+                    self.collectionView.reloadData()
                 }
             }
         }
@@ -93,8 +126,8 @@ class QuizCenterVC: UITableViewController {
 
 }
 
-class QuizCenterCell: UITableViewCell {
+class QuizCenterRectCell: UICollectionViewCell {
     @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var title: UILabel!
-    
 }

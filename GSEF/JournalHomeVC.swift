@@ -20,10 +20,36 @@ class JournalHomeVC: UITableViewController {
         cell.title.text = journals[indexPath.row].title
         cell.editor.text = "Chief Editor: \(journals[indexPath.row].editor)"
         cell.desc.text = journals[indexPath.row].desc
-        cell.backView.layer.cornerRadius = 10
+        cell.backView.layer.cornerRadius = 12
+        cell.backImage.layer.cornerRadius = 12
         cell.numArticles.layer.cornerRadius = 12
         cell.numArticles.layer.masksToBounds = true
         cell.numArticles.text = "\(journals[indexPath.row].articles.count)"
+        
+//        cell.backView.layer.shouldRasterize = true
+//        cell.backView.layer.rasterizationScale = UIScreen.main.scale
+//        cell.backView.layer.cornerCurve = .continuous
+//        cell.backView.layer.masksToBounds = true
+//        cell.backImage.layer.cornerCurve = .continuous
+//        cell.backImage.layer.masksToBounds = true
+        
+//        cell.backImage.isHidden = true
+//        cell.backImage.layoutSubviews()
+//        cell.backView.layoutSubviews()
+//        let mask: CAShapeLayer = {
+//            let roundPath = UIBezierPath(roundedRect: cell.backImage.frame, cornerRadius: 12)
+//            let layer = CAShapeLayer()
+//            layer.path = roundPath.cgPath
+//            return layer
+//        }()
+//        cell.backImage.layer.mask = mask
+//        cell.backView.layer.mask = mask
+//        cell.backImage.layer.shouldRasterize = true
+//        cell.backImage.layer.rasterizationScale = UIScreen.main.scale
+//        cell.backView.layer.shouldRasterize = true
+//        cell.backView.layer.rasterizationScale = UIScreen.main.scale
+        
+        cell.backgroundColor = .clear
         return cell
     }
     
@@ -41,6 +67,11 @@ class JournalHomeVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.backgroundView = {
+            let imageView = UIImageView(image: UIImage(named: "deepblue"))
+            imageView.contentMode = .scaleAspectFill
+            return imageView
+        }()
         fs = Firestore.firestore()
 //        let refreshControl = UIRefreshControl()
 //            refreshControl.attributedTitle = NSAttributedString(string: "Downloading journals...")
@@ -149,4 +180,5 @@ class JournalCell: UITableViewCell {
     @IBOutlet weak var desc: UILabel!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var numArticles: UILabel!
+    @IBOutlet weak var backImage: UIImageView!
 }

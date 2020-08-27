@@ -6,9 +6,7 @@ target 'GSEF' do
   use_frameworks!
 
   # Pods for GSEF
-  pod 'Firebase'
   pod 'Firebase/Analytics'
-  pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
 
 end

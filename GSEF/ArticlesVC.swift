@@ -21,6 +21,9 @@ class ArticlesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.title.text = journal.articles[indexPath.row].title
         cell.editor.text = journal.articles[indexPath.row].editor
         cell.dateCreated.text = "Published on \(Date.toString(date: journal.articles[indexPath.row].dateCreated, format: "MMM d, YYYY"))"
+        cell.backImage.layer.cornerRadius = 12
+        cell.backgroundColor = .clear
+        cell.contentView.backgroundColor = .clear
         return cell
     }
     
@@ -35,9 +38,12 @@ class ArticlesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
 
+    @IBOutlet weak var backImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = journal.title
+        tableView.tableFooterView = UIView()
+        tableView.backgroundColor = .clear
         journal.articles = Journal.sortArticles(articles: journal.articles)
     }
     @IBOutlet weak var tableView: UITableView!
@@ -78,6 +84,7 @@ class OpenArticleVC: UIViewController {
 
 class ArticleCell: UITableViewCell {
     
+    @IBOutlet weak var backImage: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var editor: UILabel!
     @IBOutlet weak var dateCreated: UILabel!
