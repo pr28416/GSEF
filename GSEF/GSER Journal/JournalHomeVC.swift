@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseFirestore
+import Alamofire
 
 class JournalHomeVC: UITableViewController {
     
@@ -25,29 +26,6 @@ class JournalHomeVC: UITableViewController {
         cell.numArticles.layer.cornerRadius = 12
         cell.numArticles.layer.masksToBounds = true
         cell.numArticles.text = "\(journals[indexPath.row].articles.count)"
-        
-//        cell.backView.layer.shouldRasterize = true
-//        cell.backView.layer.rasterizationScale = UIScreen.main.scale
-//        cell.backView.layer.cornerCurve = .continuous
-//        cell.backView.layer.masksToBounds = true
-//        cell.backImage.layer.cornerCurve = .continuous
-//        cell.backImage.layer.masksToBounds = true
-        
-//        cell.backImage.isHidden = true
-//        cell.backImage.layoutSubviews()
-//        cell.backView.layoutSubviews()
-//        let mask: CAShapeLayer = {
-//            let roundPath = UIBezierPath(roundedRect: cell.backImage.frame, cornerRadius: 12)
-//            let layer = CAShapeLayer()
-//            layer.path = roundPath.cgPath
-//            return layer
-//        }()
-//        cell.backImage.layer.mask = mask
-//        cell.backView.layer.mask = mask
-//        cell.backImage.layer.shouldRasterize = true
-//        cell.backImage.layer.rasterizationScale = UIScreen.main.scale
-//        cell.backView.layer.shouldRasterize = true
-//        cell.backView.layer.rasterizationScale = UIScreen.main.scale
         
         cell.backgroundColor = .clear
         return cell
@@ -72,16 +50,16 @@ class JournalHomeVC: UITableViewController {
             imageView.contentMode = .scaleAspectFill
             return imageView
         }()
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "deepblue"), for: .default)
+        
         fs = Firestore.firestore()
-//        let refreshControl = UIRefreshControl()
-//            refreshControl.attributedTitle = NSAttributedString(string: "Downloading journals...")
-//        refreshControl.addTarget(self, action: #selector(getArticles), for: .valueChanged)
-//        tableView.refreshControl = refreshControl
+
         retrieveJournals()
-        if journals.count == 0 {
-            self.getArticles(nil)
-        }
+        self.getArticles(nil)
+        
         tableView.reloadData()
+        
     }
     
     @IBAction func refreshChanged(_ sender: UIRefreshControl) {
@@ -98,7 +76,21 @@ class JournalHomeVC: UITableViewController {
     var ref: DocumentReference!
 
     @objc func getArticles(_ sender: UIRefreshControl?) {
+        
         if let sender = sender {sender.beginRefreshing()}
+        
+        let rm = NetworkReachabilityManager()
+        rm?.startListening(onUpdatePerforming: { _ in
+            if let hasWifi = rm?.isReachable, hasWifi {
+                print("Has WiFi")
+            } else {
+                print("No WiFi")
+                self.showAlert(title: "Not connected to internet", message: "You are currently not connected to the internet. Certain documents may not load from the server.")
+                if let sender = sender {sender.endRefreshing()}
+                return
+            }
+        })
+        
 //        else {tableView.refreshControl?.beginRefreshing()}
         fs.collection("Journals").getDocuments(completion: { (snapshot, err) in
             if let err = err {
@@ -148,7 +140,10 @@ class JournalHomeVC: UITableViewController {
                             title: data["title"] as! String,
                             editor: data["editor"] as! String,
                             text: data["text"] as! String,
-                            dateCreated: (data["dateCreated"] as! Timestamp).dateValue()))
+                            dateCreated: (data["dateCreated"] as! Timestamp).dateValue(),
+                            isDraft: false,
+                            category: category
+                            ))
                         }
                     }
                     journal.articles = articles

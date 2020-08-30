@@ -8,15 +8,15 @@
 
 import UIKit
 
-class ArticlesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ArticlesVC: UITableViewController {
     
     var journal: Journal!
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return journal.articles.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleCell
         cell.title.text = journal.articles[indexPath.row].title
         cell.editor.text = journal.articles[indexPath.row].editor
@@ -27,7 +27,7 @@ class ArticlesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "openArticle", sender: journal.articles[indexPath.row])
     }
     
@@ -38,15 +38,18 @@ class ArticlesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-    @IBOutlet weak var backImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = journal.title
+        tableView.backgroundView = {
+            let imageView = UIImageView(image: UIImage(named: "deepblue"))
+            imageView.contentMode = .scaleAspectFill
+            return imageView
+        }()
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = .clear
         journal.articles = Journal.sortArticles(articles: journal.articles)
     }
-    @IBOutlet weak var tableView: UITableView!
     
 }
 

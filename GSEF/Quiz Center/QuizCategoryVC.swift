@@ -54,13 +54,6 @@ class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         if segue.identifier == "openMultipleChoice" {
             let VC = (segue.destination as! UINavigationController).viewControllers[0] as! MultipleChoiceVC
             VC.quiz = (sender as! Quiz)
-        }/* else if segue.identifier == "openMatching" {
-            let VC = (segue.destination as! UINavigationController).viewControllers[0] as! MatchingVC
-            VC.quiz = sender as! Quiz
-        }*/
-        else if segue.identifier == "openFlashcards" {
-            let VC = (segue.destination as! UINavigationController).viewControllers[0] as! FlashcardVC
-            VC.quiz = (sender as! Quiz)
         }
     }
     

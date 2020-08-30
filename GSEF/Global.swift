@@ -62,6 +62,8 @@ struct Article: Codable {
     var editor: String
     var text: String
     var dateCreated: Date
+    var isDraft: Bool
+    var category: String
 }
 
 extension Date {
@@ -73,6 +75,7 @@ extension Date {
 }
 
 var journals: [Journal] = []
+var myArticles: [Article] = []
 var quizCategories: [Quiz] = []
 
 func saveJournals() {
@@ -112,6 +115,30 @@ func retrieveQuizzes() {
         print("Successfully retrieved quizCategories")
     } catch {
         print(error.localizedDescription)
+    }
+}
+
+func saveMyArticles() -> Bool {
+    let userDefaults = UserDefaults.standard
+    do {
+        try userDefaults.setObject(myArticles, forKey: "myArticles")
+        return true
+//        print("Successfully saved myArticles")
+    } catch {
+        print(error.localizedDescription)
+        return false
+    }
+}
+
+func retrieveMyArticles() -> Bool {
+    let userDefaults = UserDefaults.standard
+    do {
+        myArticles = try userDefaults.getObject(forKey: "myArticles", castTo: [Article].self)
+        return true
+//        print("Successfully retrieved myArticles")
+    } catch {
+        print(error.localizedDescription)
+        return false
     }
 }
 

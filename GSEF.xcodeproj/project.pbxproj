@@ -20,10 +20,8 @@
 		82A318BF24E043CE006BE727 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A318BE24E043CE006BE727 /* Global.swift */; };
 		82A318C124E044EF006BE727 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82A318C024E044EF006BE727 /* GoogleService-Info.plist */; };
 		82A318C324E05F6B006BE727 /* ArticlesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A318C224E05F6B006BE727 /* ArticlesVC.swift */; };
-		82DCC58524E471BE00075780 /* MatchingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DCC58424E471BE00075780 /* MatchingVC.swift */; };
-		82DCC58724E4758700075780 /* FlashcardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DCC58624E4758700075780 /* FlashcardVC.swift */; };
-		82DCC58924E4767300075780 /* Flashcard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82DCC58824E4767300075780 /* Flashcard.xib */; };
-		82DCC58B24E4771600075780 /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DCC58A24E4771600075780 /* Flashcard.swift */; };
+		82D66DE524FAACB500C96A9F /* MyArticlesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D66DE424FAACB500C96A9F /* MyArticlesVC.swift */; };
+		82D66DE724FAB7E100C96A9F /* EditArticleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D66DE624FAB7E100C96A9F /* EditArticleVC.swift */; };
 		82DCC58D24E49B3E00075780 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DCC58C24E49B3E00075780 /* AboutVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,10 +42,8 @@
 		82A318BE24E043CE006BE727 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		82A318C024E044EF006BE727 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		82A318C224E05F6B006BE727 /* ArticlesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesVC.swift; sourceTree = "<group>"; };
-		82DCC58424E471BE00075780 /* MatchingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingVC.swift; sourceTree = "<group>"; };
-		82DCC58624E4758700075780 /* FlashcardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardVC.swift; sourceTree = "<group>"; };
-		82DCC58824E4767300075780 /* Flashcard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Flashcard.xib; sourceTree = "<group>"; };
-		82DCC58A24E4771600075780 /* Flashcard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flashcard.swift; sourceTree = "<group>"; };
+		82D66DE424FAACB500C96A9F /* MyArticlesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyArticlesVC.swift; sourceTree = "<group>"; };
+		82D66DE624FAB7E100C96A9F /* EditArticleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditArticleVC.swift; sourceTree = "<group>"; };
 		82DCC58C24E49B3E00075780 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		9C9F87D09CE93213CB0EACE6 /* Pods-GSEF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GSEF.release.xcconfig"; path = "Target Support Files/Pods-GSEF/Pods-GSEF.release.xcconfig"; sourceTree = "<group>"; };
 		B3F3D01902C863283A5331B5 /* Pods-GSEF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GSEF.debug.xcconfig"; path = "Target Support Files/Pods-GSEF/Pods-GSEF.debug.xcconfig"; sourceTree = "<group>"; };
@@ -95,27 +91,49 @@
 		82A318A924E03DD6006BE727 /* GSEF */ = {
 			isa = PBXGroup;
 			children = (
+				82E4CEF024FAA41C00CD7096 /* Home */,
+				82E4CEEF24FAA40500CD7096 /* Quiz Center */,
+				82E4CEEE24FAA3F400CD7096 /* GSER Journal */,
 				823132DE24F05B30001B9C8B /* GSEF.entitlements */,
 				82A318AA24E03DD6006BE727 /* AppDelegate.swift */,
 				82A318AC24E03DD6006BE727 /* SceneDelegate.swift */,
-				8272B16E24E42377009B1422 /* MultipleChoiceVC.swift */,
-				82DCC58424E471BE00075780 /* MatchingVC.swift */,
-				82DCC58624E4758700075780 /* FlashcardVC.swift */,
-				82A318C224E05F6B006BE727 /* ArticlesVC.swift */,
-				825352FD24E1A0F1002B4565 /* QuizCenterVC.swift */,
-				825352FF24E1BA03002B4565 /* QuizCategoryVC.swift */,
-				82A318AE24E03DD6006BE727 /* JournalHomeVC.swift */,
 				82A318BE24E043CE006BE727 /* Global.swift */,
 				82A318B024E03DD6006BE727 /* Main.storyboard */,
-				82DCC58824E4767300075780 /* Flashcard.xib */,
-				82DCC58A24E4771600075780 /* Flashcard.swift */,
 				82A318B324E03DD7006BE727 /* Assets.xcassets */,
-				82DCC58C24E49B3E00075780 /* AboutVC.swift */,
 				82A318C024E044EF006BE727 /* GoogleService-Info.plist */,
 				82A318B524E03DD7006BE727 /* LaunchScreen.storyboard */,
 				82A318B824E03DD7006BE727 /* Info.plist */,
 			);
 			path = GSEF;
+			sourceTree = "<group>";
+		};
+		82E4CEEE24FAA3F400CD7096 /* GSER Journal */ = {
+			isa = PBXGroup;
+			children = (
+				82A318AE24E03DD6006BE727 /* JournalHomeVC.swift */,
+				82D66DE424FAACB500C96A9F /* MyArticlesVC.swift */,
+				82A318C224E05F6B006BE727 /* ArticlesVC.swift */,
+				82D66DE624FAB7E100C96A9F /* EditArticleVC.swift */,
+			);
+			path = "GSER Journal";
+			sourceTree = "<group>";
+		};
+		82E4CEEF24FAA40500CD7096 /* Quiz Center */ = {
+			isa = PBXGroup;
+			children = (
+				825352FD24E1A0F1002B4565 /* QuizCenterVC.swift */,
+				825352FF24E1BA03002B4565 /* QuizCategoryVC.swift */,
+				8272B16E24E42377009B1422 /* MultipleChoiceVC.swift */,
+			);
+			path = "Quiz Center";
+			sourceTree = "<group>";
+		};
+		82E4CEF024FAA41C00CD7096 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				82DCC58C24E49B3E00075780 /* AboutVC.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		9CD2BD1566E4E6CD07BAE149 /* Frameworks */ = {
@@ -190,7 +208,6 @@
 				82A318C124E044EF006BE727 /* GoogleService-Info.plist in Resources */,
 				82A318B424E03DD7006BE727 /* Assets.xcassets in Resources */,
 				82A318B224E03DD6006BE727 /* Main.storyboard in Resources */,
-				82DCC58924E4767300075780 /* Flashcard.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,13 +261,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				82A318BF24E043CE006BE727 /* Global.swift in Sources */,
+				82D66DE524FAACB500C96A9F /* MyArticlesVC.swift in Sources */,
+				82D66DE724FAB7E100C96A9F /* EditArticleVC.swift in Sources */,
 				8272B16F24E42377009B1422 /* MultipleChoiceVC.swift in Sources */,
 				8253530024E1BA03002B4565 /* QuizCategoryVC.swift in Sources */,
-				82DCC58724E4758700075780 /* FlashcardVC.swift in Sources */,
 				82A318AF24E03DD6006BE727 /* JournalHomeVC.swift in Sources */,
 				825352FE24E1A0F1002B4565 /* QuizCenterVC.swift in Sources */,
-				82DCC58524E471BE00075780 /* MatchingVC.swift in Sources */,
-				82DCC58B24E4771600075780 /* Flashcard.swift in Sources */,
 				82DCC58D24E49B3E00075780 /* AboutVC.swift in Sources */,
 				82A318AB24E03DD6006BE727 /* AppDelegate.swift in Sources */,
 				82A318C324E05F6B006BE727 /* ArticlesVC.swift in Sources */,

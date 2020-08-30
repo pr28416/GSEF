@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseFirestore
+import Alamofire
 
 class QuizCenterVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -70,14 +71,26 @@ class QuizCenterVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
 //        }()
         
         fs = Firestore.firestore()
+        
         retrieveQuizzes()
-        if quizCategories.count == 0 {
-            getQuizzes(nil)
-        }
+        getQuizzes(nil)
     }
     
     @objc func getQuizzes(_ sender: UIRefreshControl?) {
         if let sender = sender {sender.beginRefreshing()}
+        
+        let rm = NetworkReachabilityManager()
+        rm?.startListening(onUpdatePerforming: { _ in
+            if let hasWifi = rm?.isReachable, hasWifi {
+                print("Has WiFi")
+            } else {
+                print("No WiFi")
+                self.showAlert(title: "Not connected to internet", message: "You are currently not connected to the internet. Certain documents may not load from the server.")
+                if let sender = sender {sender.endRefreshing()}
+                return
+            }
+        })
+        
         fs.collection("Quizzes").getDocuments { (snapshot, err) in
             if let err = err {
                 print("ERROR: \(err)")
