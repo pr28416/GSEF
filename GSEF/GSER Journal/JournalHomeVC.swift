@@ -51,7 +51,7 @@ class JournalHomeVC: UITableViewController {
             return imageView
         }()
         
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "deepblue"), for: .default)
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "deepblue"), for: .default)
         
         fs = Firestore.firestore()
 

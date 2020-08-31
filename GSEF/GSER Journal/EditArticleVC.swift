@@ -103,12 +103,12 @@ class EditArticleVC: UITableViewController, UITextFieldDelegate, UITextViewDeleg
         
         if saveMyArticles() {
             let alert = UIAlertController(title: "Draft saved", message: "Your draft has been saved.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Continue editing", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Exit", style: .destructive, handler: { (_) in
                 self.dismiss(animated: true) {
                     NotificationCenter.default.post(name: NSNotification.Name("reloadTableView"), object: nil)
                 }
             }))
+            alert.addAction(UIAlertAction(title: "Continue", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Error", message: "There was an error saving your work.", preferredStyle: .alert)
@@ -136,6 +136,12 @@ class EditArticleVC: UITableViewController, UITextFieldDelegate, UITextViewDeleg
                 NotificationCenter.default.post(name: NSNotification.Name("reloadTableView"), object: nil)
             }
         }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func submitForReview(_ sender: Any) {
+        let alert = UIAlertController(title: "Feature coming soon", message: "Soon, you will be able to submit articles through this app. For now, you can simply write drafts.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Go back", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }
