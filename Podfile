@@ -9,5 +9,6 @@ target 'GSEF' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Firestore'
   pod 'Alamofire'
+  pod 'ActivityIndicatorController'
 
 end

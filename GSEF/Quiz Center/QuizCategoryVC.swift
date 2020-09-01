@@ -65,7 +65,7 @@ class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         PracticeOption(title: "Multiple Choice", image: UIImage(systemName: "list.bullet")),
 //        PracticeOption(title: "Matching", image: UIImage(systemName: "rectangle.righthalf.inset.fill.arrow.right"))
 //        PracticeOption(title: "Flashcards", image: UIImage(systemName: "rectangle.stack.fill"))
-        PracticeOption(title: "More coming soon!", image: UIImage(systemName: "atom"))
+        PracticeOption(title: "More coming soon!", image: UIImage(named: "app_atom"))
     ]
     
     override func viewDidLoad() {

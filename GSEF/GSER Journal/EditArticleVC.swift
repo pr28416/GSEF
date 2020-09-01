@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ActivityIndicatorController
 
 class EditArticleVC: UITableViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -17,18 +18,16 @@ class EditArticleVC: UITableViewController, UITextFieldDelegate, UITextViewDeleg
     @IBOutlet weak var editorField: UITextField!
     
     @IBAction func close(_ sender: Any) {
-        let alert = UIAlertController(title: "Confirm exit", message: "Are you sure you want to leave? Your work won't be saved.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Exit", style: .destructive, handler: { (_) in
-            self.dismiss(animated: true) {
-                NotificationCenter.default.post(name: NSNotification.Name("reloadTableView"), object: nil)
-            }
-        }))
-        self.present(alert, animated: true, completion: nil)
+        showAlert(title: "Confirm exit", message: "Are you sure you want to leave? Your work won't be saved.", style: .alert, actions: [
+            UIAlertAction(title: "Cancel", style: .cancel, handler: nil),
+            UIAlertAction(title: "Exit", style: .destructive, handler: { (_) in
+                self.closePage()
+            })
+        ])
     }
     
     let categories: [String] = ["Behavioral Economics", "Current Events", "Economic History", "Economic and Urban Geography", "Environmental Economics", "Finance", "Macroeconomics", "Microeconomics", "Political Economy and Geopolitics", "Science and Technology"]
-
+    
     var article: Article!
     
     var pickerView: UIPickerView!
@@ -37,6 +36,7 @@ class EditArticleVC: UITableViewController, UITextFieldDelegate, UITextViewDeleg
         super.viewDidLoad()
         self.isModalInPresentation = true
         self.title = "\(editMode ? "Edit" : "New") Article"
+        
         titleField.text = article.title
         categoryField.text = article.category
         articleField.text = article.text
@@ -55,6 +55,14 @@ class EditArticleVC: UITableViewController, UITextFieldDelegate, UITextViewDeleg
             toolbar.sizeToFit()
             return toolbar
         }()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(closePage), name: NSNotification.Name("closeArticleEditor"), object: nil)
+    }
+    
+    @objc func closePage() {
+        self.dismiss(animated: true) {
+            NotificationCenter.default.post(name: NSNotification.Name("reloadTableView"), object: nil)
+        }
     }
     
     @objc func assignCategory() {
@@ -79,7 +87,7 @@ class EditArticleVC: UITableViewController, UITextFieldDelegate, UITextViewDeleg
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return categories[row]
     }
-
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -88,60 +96,93 @@ class EditArticleVC: UITableViewController, UITextFieldDelegate, UITextViewDeleg
     
     @IBAction func saveDraft(_ sender: Any) {
         if let title = titleField.text, let category = categoryField.text, let text = articleField.text, let editor = editorField.text {
-            if editMode {
-                for i in 0..<myArticles.count {
-                    let a = myArticles[i]
-                    if a.title == self.article.title && a.editor == self.article.editor && a.category == self.article.category && a.text == self.article.text {
-                        myArticles[i] = Article(title: title, editor: editor, text: text, dateCreated: Date(), isDraft: true, category: category)
-                        break
-                    }
-                }
-            } else {
-                myArticles.append(Article(title: title, editor: editor, text: text, dateCreated: Date(), isDraft: true, category: category))
-            }
+            article.update(title: title, editor: editor, text: text, dateCreated: Date(), isDraft: true, category: category)
         }
         
         if saveMyArticles() {
-            let alert = UIAlertController(title: "Draft saved", message: "Your draft has been saved.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Exit", style: .destructive, handler: { (_) in
-                self.dismiss(animated: true) {
-                    NotificationCenter.default.post(name: NSNotification.Name("reloadTableView"), object: nil)
-                }
-            }))
-            alert.addAction(UIAlertAction(title: "Continue", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            showAlert(title: "Draft saved", message: "Your draft has been saved.", style: .alert, actions: [
+                UIAlertAction(title: "Exit", style: .destructive, handler: { (_) in
+                    self.dismiss(animated: true) {
+                        NotificationCenter.default.post(name: NSNotification.Name("reloadTableView"), object: nil)
+                    }
+                }),
+                UIAlertAction(title: "Continue", style: .cancel, handler: nil)
+            ])
         } else {
-            let alert = UIAlertController(title: "Error", message: "There was an error saving your work.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            showAlert(title: "Error", message: "There was an error saving your work.", style: .alert)
         }
     }
     
     @IBAction func deleteDraft(_ sender: Any) {
-        let alert = UIAlertController(title: "Confirm deletion", message: "Are you sure you want to delete this draft? You won't be able to restore it.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
-            if self.editMode {
-                for i in 0..<myArticles.count {
-                    let a = myArticles[i]
-                    if a.title == self.article.title && a.editor == self.article.editor && a.category == self.article.category {
-                        myArticles.remove(at: i)
-                        self.dismiss(animated: true, completion: nil)
-                        _ = saveMyArticles()
-                        break
-                    }
+        showAlert(title: "Confirm deletion", message: "Are you sure you want to delete this draft? You won't be able to restore it.", style: .alert, actions: [
+            UIAlertAction(title: "Cancel", style: .cancel, handler: nil),
+            UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
+                myArticles.removeAll { (a) -> Bool in
+                    a.id == self.article.id
                 }
-            }
-            self.dismiss(animated: true) {
-                NotificationCenter.default.post(name: NSNotification.Name("reloadTableView"), object: nil)
-            }
-        }))
-        self.present(alert, animated: true, completion: nil)
+                self.closePage()
+            })
+        ])
     }
     
     @IBAction func submitForReview(_ sender: Any) {
-        let alert = UIAlertController(title: "Feature coming soon", message: "Soon, you will be able to submit articles through this app. For now, you can simply write drafts.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Go back", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        
+        let indicator = ActivityIndicatorController()
+        self.present(indicator, animated: true, completion: nil)
+        
+        print("Verifying submission...")
+        
+        if let title = self.titleField.text,
+           title.count > 0,
+           let category = self.categoryField.text,
+           self.categories.contains(category),
+           let text = self.articleField.text,
+           text.count > 0,
+           let editor = self.editorField.text,
+           editor.count > 0 {
+            article.update(title: title, editor: editor, text: text, dateCreated: Date(), isDraft: true, category: category)
+        } else {
+            print("Verification failed.")
+            indicator.dismiss(animated: true) {
+                self.showAlert(title: "Incomplete submission", message: "There are one or more areas that are incomplete. Make sure to fill in all the available boxes.", style: .alert)
+                return
+            }
+        }
+        
+        print("Attempting to save articles...")
+        
+        if !saveMyArticles() {
+            print("Saving failed.")
+            indicator.dismiss(animated: true) {
+                self.showAlert(title: "Error", message: "There was an error saving your work.", style: .alert)
+                return
+            }
+        } else {
+            indicator.dismiss(animated: true) {
+                print("Proceeding to submission VC")
+                
+                self.performSegue(withIdentifier: "processSubmission", sender: self.article)
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "processSubmission" {
+            let vc = segue.destination as! ArticleSubmissionVC
+            vc.article = (sender as! Article)
+        }
+    }
+    
+    /// Presents an alert to the user. If there are no actions, a "Go back" message is displayed.
+    func showAlert(title: String, message: String, style: UIAlertController.Style, actions: [UIAlertAction]? = nil, completion: (() -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: style)
+        if let actions = actions, actions.count > 0 {
+            for action in actions {
+                alert.addAction(action)
+            }
+        } else {
+            alert.addAction(UIAlertAction(title: "Go back", style: .cancel, handler: nil))
+        }
+        self.present(alert, animated: true, completion: completion)
     }
 }

@@ -60,12 +60,13 @@ class OpenArticleVC: UIViewController {
     @IBOutlet weak var articleEditor: UILabel!
     @IBOutlet weak var articleDateCreated: UILabel!
     @IBOutlet weak var articleText: UITextView!
+    var isPublished = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         articleTitle.text = article.title
         articleEditor.text = "Editor: \(article.editor)"
-        articleDateCreated.text = Date.toString(date: article.dateCreated, format: "MMM d, YYYY")
+        articleDateCreated.text = "\(isPublished ? "Published" : "Submitted") on \(Date.toString(date: article.dateCreated, format: "MMM d, YYYY"))"
         
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 15

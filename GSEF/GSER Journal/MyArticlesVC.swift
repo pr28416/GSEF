@@ -9,6 +9,9 @@
 import UIKit
 
 class MyArticlesVC: UITableViewController {
+    
+    var submittedArticles: [Article] = []
+    var draftArticles: [Article] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,41 +23,59 @@ class MyArticlesVC: UITableViewController {
         }()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: NSNotification.Name("reloadTableView"), object: nil)
+        
+        refreshArticles()
     }
     
     @objc func reloadTableView() {
-        tableView.reloadData()
+        refreshArticles()
+    }
+    
+    @IBAction func refresh(_ sender: UIRefreshControl) {
+        refreshArticles()
+        sender.endRefreshing()
+    }
+    
+    @IBAction func debugRemove(_ sender: Any) {
+        myArticles.removeAll()
+        saveMyArticles()
+        refreshArticles()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "newArticle" {
+        switch segue.identifier {
+        case "newArticle":
             let vc = (segue.destination as! UINavigationController).viewControllers[0] as! EditArticleVC
             vc.editMode = false
             vc.article = Article(title: "", editor: "", text: "", dateCreated: Date(), isDraft: true, category: "Behavioral Economics")
-        } else if segue.identifier == "editArticle" {
+            myArticles.append(vc.article)
+        case "editArticle":
             let vc = (segue.destination as! UINavigationController).viewControllers[0] as! EditArticleVC
             vc.editMode = true
             vc.article = (sender as! Article)
+        case "openFinishedArticle":
+            let vc = segue.destination as! OpenArticleVC
+            vc.article = (sender as! Article)
+            vc.isPublished = false
+        default: break
         }
     }
     
-    func getArticles(section: Int) -> [Article] {
+    func refreshArticles() {
         _ = retrieveMyArticles()
-        var articles: [Article] = []
-        if section == 0 {
-            for article in myArticles {
-                if article.isDraft {
-                    articles.append(article)
-                }
-            }
-        } else {
-            for article in myArticles {
-                if !article.isDraft {
-                    articles.append(article)
-                }
+        draftArticles = []
+        submittedArticles = []
+        for article in myArticles {
+            if article.isDraft {
+                draftArticles.append(article)
+            } else {
+                submittedArticles.append(article)
             }
         }
-        return articles
+        print("Draft articles:", draftArticles)
+        print("Submitted articles:", submittedArticles)
+        _ = saveMyArticles()
+        tableView.reloadData()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -62,14 +83,26 @@ class MyArticlesVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard indexPath.section == 0 else {return}
-        let a = getArticles(section: 0)
-        guard a.count != 0 else {return}
-        self.performSegue(withIdentifier: "editArticle", sender: a[indexPath.row])
+        switch indexPath.section {
+        case 0:
+            guard draftArticles.count != 0 else {return}
+            self.performSegue(withIdentifier: "editArticle",
+                              sender: draftArticles[indexPath.row])
+        case 1:
+            guard submittedArticles.count != 0 else {return}
+            self.performSegue(withIdentifier: "openFinishedArticle",
+                              sender: submittedArticles[indexPath.row])
+        default: break
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = getArticles(section: section).count
+        let count: Int
+        switch section {
+        case 0: count = draftArticles.count
+        case 1: count = submittedArticles.count
+        default: return 1
+        }
         return count == 0 ? 1 : count
     }
 
@@ -96,16 +129,21 @@ class MyArticlesVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let articles = getArticles(section: indexPath.section)
-        if articles.count == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "blankCell", for: indexPath)
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! MyArticleCell
-            cell.title.text = articles[indexPath.row].title
-            cell.lastEdited.text = Date.toString(date: articles[indexPath.row].dateCreated, format: "MMM dd, YYYY")
-            return cell
+        let articles: [Article]
+        switch indexPath.section {
+        case 0: articles = draftArticles
+        case 1: articles = submittedArticles
+        default: return tableView.dequeueReusableCell(withIdentifier: "blankCell", for: indexPath)
         }
+        
+        if articles.count == 0 {
+            return tableView.dequeueReusableCell(withIdentifier: "blankCell", for: indexPath)
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! MyArticleCell
+        cell.title.text = articles[indexPath.row].title
+        cell.lastEdited.text = Date.toString(date: articles[indexPath.row].dateCreated, format: "MMM dd, YYYY")
+        return cell
     }
 
 }

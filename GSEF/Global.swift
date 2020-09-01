@@ -44,26 +44,59 @@ extension UserDefaults: ObjectSavable {
     }
 }
 
-struct Journal: Codable {
+class Journal: Codable, CustomStringConvertible {
+    var description: String { return "\(title) (\(editor)) - \(articles)" }
+    
     var title: String
     var editor: String
     var desc: String
     var articles: [Article]
+    var id: String
     
     static func sortArticles(articles: [Article]) -> [Article] {
         return articles.sorted { (a1, a2) -> Bool in
             return a1.dateCreated > a2.dateCreated
         }
     }
+    
+    init(title: String, editor: String, desc: String, articles: [Article] = [], id: String = UUID().uuidString) {
+        self.title = title
+        self.editor = editor
+        self.desc = desc
+        self.articles = articles
+        self.id = id
+    }
 }
 
-struct Article: Codable {
+class Article: Codable, CustomStringConvertible {
+    var description: String { return "\(title) - \(editor)" }
+    
     var title: String
     var editor: String
     var text: String
     var dateCreated: Date
     var isDraft: Bool
     var category: String
+    var id: String
+    
+    init(title: String, editor: String, text: String, dateCreated: Date, isDraft: Bool, category: String, id: String = UUID().uuidString) {
+        self.title = title
+        self.editor = editor
+        self.text = text
+        self.dateCreated = dateCreated
+        self.isDraft = isDraft
+        self.category = category
+        self.id = id
+    }
+    
+    func update(title: String, editor: String, text: String, dateCreated: Date, isDraft: Bool, category: String) {
+        self.title = title
+        self.editor = editor
+        self.text = text
+        self.dateCreated = dateCreated
+        self.isDraft = isDraft
+        self.category = category
+    }
 }
 
 extension Date {

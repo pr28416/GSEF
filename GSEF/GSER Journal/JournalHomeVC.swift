@@ -51,11 +51,10 @@ class JournalHomeVC: UITableViewController {
             return imageView
         }()
         
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "deepblue"), for: .default)
-        
         fs = Firestore.firestore()
 
         retrieveJournals()
+        
         self.getArticles(nil)
         
         tableView.reloadData()

@@ -10,6 +10,7 @@
 		5A55BC16CFAE616C54F5F124 /* Pods_GSEF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38F040E4F4184D802CB580C9 /* Pods_GSEF.framework */; };
 		825352FE24E1A0F1002B4565 /* QuizCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825352FD24E1A0F1002B4565 /* QuizCenterVC.swift */; };
 		8253530024E1BA03002B4565 /* QuizCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825352FF24E1BA03002B4565 /* QuizCategoryVC.swift */; };
+		8256DEC124FEAF96006081AD /* ArticleSubmissionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8256DEC024FEAF96006081AD /* ArticleSubmissionVC.swift */; };
 		8272B16F24E42377009B1422 /* MultipleChoiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8272B16E24E42377009B1422 /* MultipleChoiceVC.swift */; };
 		82A318AB24E03DD6006BE727 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A318AA24E03DD6006BE727 /* AppDelegate.swift */; };
 		82A318AD24E03DD6006BE727 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A318AC24E03DD6006BE727 /* SceneDelegate.swift */; };
@@ -30,6 +31,7 @@
 		823132DE24F05B30001B9C8B /* GSEF.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GSEF.entitlements; sourceTree = "<group>"; };
 		825352FD24E1A0F1002B4565 /* QuizCenterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCenterVC.swift; sourceTree = "<group>"; };
 		825352FF24E1BA03002B4565 /* QuizCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCategoryVC.swift; sourceTree = "<group>"; };
+		8256DEC024FEAF96006081AD /* ArticleSubmissionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSubmissionVC.swift; sourceTree = "<group>"; };
 		8272B16E24E42377009B1422 /* MultipleChoiceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleChoiceVC.swift; sourceTree = "<group>"; };
 		82A318A724E03DD6006BE727 /* GSEF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GSEF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82A318AA24E03DD6006BE727 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				82D66DE424FAACB500C96A9F /* MyArticlesVC.swift */,
 				82A318C224E05F6B006BE727 /* ArticlesVC.swift */,
 				82D66DE624FAB7E100C96A9F /* EditArticleVC.swift */,
+				8256DEC024FEAF96006081AD /* ArticleSubmissionVC.swift */,
 			);
 			path = "GSER Journal";
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82A318BF24E043CE006BE727 /* Global.swift in Sources */,
+				8256DEC124FEAF96006081AD /* ArticleSubmissionVC.swift in Sources */,
 				82D66DE524FAACB500C96A9F /* MyArticlesVC.swift in Sources */,
 				82D66DE724FAB7E100C96A9F /* EditArticleVC.swift in Sources */,
 				8272B16F24E42377009B1422 /* MultipleChoiceVC.swift in Sources */,
