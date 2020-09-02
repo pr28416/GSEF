@@ -13,6 +13,7 @@ class AboutVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         activateButton.layer.cornerRadius = 10
+        copyright.text = "© \(Date.toString(date: Date(), format: "YYYY")) Pranav Ramesh"
     }
     
     @IBOutlet weak var activateButton: UIButton!
@@ -21,5 +22,6 @@ class AboutVC: UIViewController {
             UIApplication.shared.open(url)
         }
     }
+    @IBOutlet weak var copyright: UILabel!
     
 }

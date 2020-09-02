@@ -209,22 +209,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Articles" id="aHH-VE-Ckd">
-                        <rightBarButtonItems>
-                            <barButtonItem style="done" systemItem="add" id="etn-ua-mYC">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <segue destination="B3l-01-ngK" kind="presentation" identifier="newArticle" id="QT1-WW-e2A"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="trash" id="XqZ-Zo-qA2">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <action selector="debugRemove:" destination="Nav-8S-79t" id="yyB-OC-70h"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="etn-ua-mYC">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="B3l-01-ngK" kind="presentation" identifier="newArticle" id="QT1-WW-e2A"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="29E-Pf-WjE">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
                             <action selector="refresh:" destination="Nav-8S-79t" eventType="valueChanged" id="Ww8-Yp-ktr"/>
@@ -790,7 +783,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cM8-gN-yW2" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="553.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="582.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="250" image="gsef" translatesAutoresizingMaskIntoConstraints="NO" id="0rz-Qg-dau">
                                                 <rect key="frame" x="20" y="12" width="374" height="160"/>
@@ -821,19 +814,28 @@
                                                     <action selector="activatePressed:" destination="q5N-WQ-fk2" eventType="touchUpInside" id="sP2-oo-Tmt"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© 2020 Pranav Ramesh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMu-Pu-z15">
+                                                <rect key="frame" x="20" y="553.5" width="374" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstItem="dMu-Pu-z15" firstAttribute="leading" secondItem="cM8-gN-yW2" secondAttribute="leading" constant="20" id="3QM-4Z-oKC"/>
+                                            <constraint firstAttribute="trailing" secondItem="dMu-Pu-z15" secondAttribute="trailing" constant="20" id="5s9-ym-VgR"/>
                                             <constraint firstItem="0rz-Qg-dau" firstAttribute="leading" secondItem="cM8-gN-yW2" secondAttribute="leading" constant="20" id="Ave-3V-DqM"/>
                                             <constraint firstItem="nQl-gU-tp5" firstAttribute="leading" secondItem="cM8-gN-yW2" secondAttribute="leadingMargin" constant="12" id="FM7-4v-CRa"/>
                                             <constraint firstItem="HUw-E8-xS5" firstAttribute="leading" secondItem="cM8-gN-yW2" secondAttribute="leading" constant="12" id="MN8-ma-FiS"/>
                                             <constraint firstItem="HUw-E8-xS5" firstAttribute="top" secondItem="nQl-gU-tp5" secondAttribute="bottom" constant="16" id="OhX-am-pf3"/>
+                                            <constraint firstItem="dMu-Pu-z15" firstAttribute="top" secondItem="HUw-E8-xS5" secondAttribute="bottom" constant="12" id="TXe-Lq-dIa"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="nQl-gU-tp5" secondAttribute="trailing" constant="12" id="XGJ-e6-5MY"/>
                                             <constraint firstAttribute="trailing" secondItem="0rz-Qg-dau" secondAttribute="trailing" constant="20" id="eUc-nw-qzW"/>
-                                            <constraint firstAttribute="bottom" secondItem="HUw-E8-xS5" secondAttribute="bottom" constant="12" id="fNi-DA-JQ5"/>
                                             <constraint firstItem="0rz-Qg-dau" firstAttribute="top" secondItem="cM8-gN-yW2" secondAttribute="top" constant="12" id="jWc-B6-35O"/>
                                             <constraint firstAttribute="trailing" secondItem="HUw-E8-xS5" secondAttribute="trailing" constant="12" id="kUi-uH-eTj"/>
                                             <constraint firstItem="nQl-gU-tp5" firstAttribute="top" secondItem="0rz-Qg-dau" secondAttribute="bottom" constant="12" id="nTG-v9-cHY"/>
+                                            <constraint firstAttribute="bottom" secondItem="dMu-Pu-z15" secondAttribute="bottom" constant="12" id="xAH-e5-JNB"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -861,6 +863,7 @@
                     <navigationItem key="navigationItem" title="About GSEF" id="9CK-dm-olJ"/>
                     <connections>
                         <outlet property="activateButton" destination="HUw-E8-xS5" id="LRJ-79-sWa"/>
+                        <outlet property="copyright" destination="dMu-Pu-z15" id="OYq-xP-Jce"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LYJ-kO-phG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1189,7 +1192,7 @@
             <objects>
                 <viewController id="MN6-fU-w6l" customClass="MultipleChoiceVC" customModule="GSEF" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3hV-IU-caZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="734"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MfQ-bY-hQE">

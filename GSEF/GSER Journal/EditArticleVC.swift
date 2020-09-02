@@ -9,7 +9,7 @@
 import UIKit
 import ActivityIndicatorController
 
-class EditArticleVC: UITableViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class EditArticleVC: UITableViewController, UITextFieldDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIPopoverControllerDelegate {
     
     var editMode = false
     @IBOutlet weak var titleField: UITextField!
@@ -120,14 +120,22 @@ class EditArticleVC: UITableViewController, UITextFieldDelegate, UITextViewDeleg
                 myArticles.removeAll { (a) -> Bool in
                     a.id == self.article.id
                 }
+                saveMyArticles()
                 self.closePage()
             })
         ])
     }
     
-    @IBAction func submitForReview(_ sender: Any) {
+
+    
+    @IBAction func submitForReview(_ sender: UIButton) {
         
         let indicator = ActivityIndicatorController()
+        indicator.isModalInPresentation = true
+        if let popoverController = indicator.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = sender.frame
+        }
         self.present(indicator, animated: true, completion: nil)
         
         print("Verifying submission...")

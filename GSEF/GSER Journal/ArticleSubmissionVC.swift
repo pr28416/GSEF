@@ -42,6 +42,11 @@ class ArticleSubmissionVC: UITableViewController, UITextFieldDelegate {
             UIAlertAction(title: "Cancel", style: .cancel, handler: nil),
             UIAlertAction(title: "Submit", style: .default, handler: {_ in
                 let indicator = ActivityIndicatorController()
+                indicator.isModalInPresentation = true
+                if let popoverController = indicator.popoverPresentationController {
+                    popoverController.sourceView = sender
+                    popoverController.sourceRect = sender.frame
+                }
                 self.present(indicator, animated: true, completion: nil)
                 
                 let fs = Firestore.firestore()

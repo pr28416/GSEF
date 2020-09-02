@@ -36,12 +36,6 @@ class MyArticlesVC: UITableViewController {
         sender.endRefreshing()
     }
     
-    @IBAction func debugRemove(_ sender: Any) {
-        myArticles.removeAll()
-        saveMyArticles()
-        refreshArticles()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "newArticle":
