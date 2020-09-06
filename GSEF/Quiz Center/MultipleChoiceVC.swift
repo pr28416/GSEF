@@ -138,6 +138,11 @@ class MultipleChoiceVC: UIViewController {
         for i in 0..<4 {
             mcqButtonText[i].text = "\(Array("ABCD")[i]). \(answers[i])"
         }
+//        print("Question:", currentQuestion.question)
+//        for i in mcqButtonText {
+//            print("\t",i.text!)
+//        }
+//        print("\tCorrect answer:", currentQuestion.answer)
     }
     
     func chooseOption(for letter: Choice) {

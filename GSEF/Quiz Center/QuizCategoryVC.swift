@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     struct PracticeOption {
         let title: String
@@ -34,7 +34,16 @@ class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QuizCell", for: indexPath) as! QuizCategoryCVC
         cell.title.text = practiceOptions[indexPath.row].title
         cell.image.image = practiceOptions[indexPath.row].image
-        cell.backView.layer.cornerRadius = 10
+        cell.backView.layer.cornerRadius = 20
+        
+        cell.layer.cornerRadius = 20
+        cell.layer.shadowColor = UIColor(red: 28/255, green: 28/255, blue: 30/255, alpha: 1).cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 8)
+        cell.layer.shadowRadius = 20
+        cell.layer.shadowOpacity = 0.25
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: 20).cgPath
+        cell.layer.masksToBounds = false
+        
         return cell
     }
     
@@ -67,12 +76,28 @@ class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        PracticeOption(title: "Flashcards", image: UIImage(systemName: "rectangle.stack.fill"))
         PracticeOption(title: "More coming soon!", image: UIImage(named: "app_atom"))
     ]
+    @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = quiz.title
         mainBackView.layer.cornerRadius = 20
-        mainBackView.layoutSubviews()
+        mainBackView.layer.shadowColor = UIColor(red: 28/255, green: 28/255, blue: 30/255, alpha: 1).cgColor
+        mainBackView.layer.shadowOffset = CGSize(width: 0, height: 20)
+        mainBackView.layer.shadowRadius = 28
+        mainBackView.layer.shadowOpacity = 0.5
+        
+        collectionView.clipsToBounds = false
+        tableView.layer.cornerRadius = 20
+        tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        tableView.clipsToBounds = true
+    }
+    
+    override func viewDidLayoutSubviews() {
+        
+        
+        mainBackView.layer.shadowPath = UIBezierPath(roundedRect: mainBackView.bounds, cornerRadius: 20).cgPath
     }
     
 }

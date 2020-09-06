@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5A55BC16CFAE616C54F5F124 /* Pods_GSEF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38F040E4F4184D802CB580C9 /* Pods_GSEF.framework */; };
+		8245FF962505288F00275C04 /* PodcastHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8245FF952505288F00275C04 /* PodcastHomeVC.swift */; };
+		8245FF982505289A00275C04 /* PodcastPreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8245FF972505289A00275C04 /* PodcastPreviewVC.swift */; };
 		825352FE24E1A0F1002B4565 /* QuizCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825352FD24E1A0F1002B4565 /* QuizCenterVC.swift */; };
 		8253530024E1BA03002B4565 /* QuizCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825352FF24E1BA03002B4565 /* QuizCategoryVC.swift */; };
 		8256DEC124FEAF96006081AD /* ArticleSubmissionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8256DEC024FEAF96006081AD /* ArticleSubmissionVC.swift */; };
@@ -29,6 +31,8 @@
 /* Begin PBXFileReference section */
 		38F040E4F4184D802CB580C9 /* Pods_GSEF.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GSEF.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		823132DE24F05B30001B9C8B /* GSEF.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GSEF.entitlements; sourceTree = "<group>"; };
+		8245FF952505288F00275C04 /* PodcastHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastHomeVC.swift; sourceTree = "<group>"; };
+		8245FF972505289A00275C04 /* PodcastPreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastPreviewVC.swift; sourceTree = "<group>"; };
 		825352FD24E1A0F1002B4565 /* QuizCenterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCenterVC.swift; sourceTree = "<group>"; };
 		825352FF24E1BA03002B4565 /* QuizCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCategoryVC.swift; sourceTree = "<group>"; };
 		8256DEC024FEAF96006081AD /* ArticleSubmissionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSubmissionVC.swift; sourceTree = "<group>"; };
@@ -72,6 +76,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8245FF8C2505281100275C04 /* Podcasts */ = {
+			isa = PBXGroup;
+			children = (
+				8245FF952505288F00275C04 /* PodcastHomeVC.swift */,
+				8245FF972505289A00275C04 /* PodcastPreviewVC.swift */,
+			);
+			path = Podcasts;
+			sourceTree = "<group>";
+		};
 		82A3189E24E03DD6006BE727 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				82E4CEF024FAA41C00CD7096 /* Home */,
+				8245FF8C2505281100275C04 /* Podcasts */,
 				82E4CEEF24FAA40500CD7096 /* Quiz Center */,
 				82E4CEEE24FAA3F400CD7096 /* GSER Journal */,
 				823132DE24F05B30001B9C8B /* GSEF.entitlements */,
@@ -263,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8245FF982505289A00275C04 /* PodcastPreviewVC.swift in Sources */,
 				82A318BF24E043CE006BE727 /* Global.swift in Sources */,
 				8256DEC124FEAF96006081AD /* ArticleSubmissionVC.swift in Sources */,
 				82D66DE524FAACB500C96A9F /* MyArticlesVC.swift in Sources */,
@@ -272,6 +287,7 @@
 				82A318AF24E03DD6006BE727 /* JournalHomeVC.swift in Sources */,
 				825352FE24E1A0F1002B4565 /* QuizCenterVC.swift in Sources */,
 				82DCC58D24E49B3E00075780 /* AboutVC.swift in Sources */,
+				8245FF962505288F00275C04 /* PodcastHomeVC.swift in Sources */,
 				82A318AB24E03DD6006BE727 /* AppDelegate.swift in Sources */,
 				82A318C324E05F6B006BE727 /* ArticlesVC.swift in Sources */,
 				82A318AD24E03DD6006BE727 /* SceneDelegate.swift in Sources */,
@@ -431,7 +447,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pranavramesh.GSEF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -455,7 +471,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pranavramesh.GSEF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

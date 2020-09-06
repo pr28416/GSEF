@@ -19,16 +19,25 @@ class QuizCenterVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QuizCenterCell", for: indexPath) as! QuizCenterRectCell
 //        cell.backView.layer.cornerRadius = 10
-        cell.layer.cornerRadius = 10
-        cell.backView.backgroundColor = .clear
+        cell.layer.cornerRadius = 15
         cell.backgroundView = {
             let imageView = UIImageView(image: UIImage(named: "cellgray"))
             imageView.contentMode = .scaleAspectFill
             return imageView
         }()
+        cell.backgroundView?.clipsToBounds = true
+        cell.backgroundView?.layer.cornerRadius = 15
         cell.title.text = quizCategories[indexPath.row].title
         cell.icon.image = UIImage(named: quizCategories[indexPath.row].imageName)
-        // Later put in cell description
+        
+//        cell.layer.cornerRadius = 20
+        cell.layer.shadowColor = UIColor(red: 28/255, green: 28/255, blue: 30/255, alpha: 1).cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 12)
+        cell.layer.shadowRadius = 20
+        cell.layer.shadowOpacity = 0.3
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: 20).cgPath
+        cell.layer.masksToBounds = false
+        
         return cell
     }
     
@@ -46,12 +55,53 @@ class QuizCenterVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let interitem: CGFloat = 16
+        let edgeinset: CGFloat = 20
+        let deviceModel = UIDevice.current.model
+        let deviceOrientation = UIDevice.current.orientation
+        let cellsPerRow: CGFloat
+        
+        print("Device: \(deviceModel), isPortait: \(deviceOrientation.isPortrait), isLandscape: \(deviceOrientation.isLandscape), isValid: \(deviceOrientation.isValidInterfaceOrientation)")
+        
+        switch deviceModel {
+        case "iPad":
+            if deviceOrientation.isPortrait {cellsPerRow = 4}
+            else if !deviceOrientation.isValidInterfaceOrientation {cellsPerRow = 4}
+            else {cellsPerRow = 6}
+        default:
+            if deviceOrientation.isPortrait {cellsPerRow = 2}
+            else if !deviceOrientation.isValidInterfaceOrientation {cellsPerRow = 2}
+            else {cellsPerRow = 3}
+        }
+        
+        return CGSize(
+            width: (collectionView.bounds.width-2*edgeinset-(cellsPerRow-1)*interitem)/cellsPerRow,
+            height: 128)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        collectionView.collectionViewLayout.invalidateLayout()
+        collectionView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.delegate = self
+        
         collectionView.backgroundView = {
-            let imageView = UIImageView(image: UIImage(named: "bluegreen"))
+            let imageView = UIImageView(image: UIImage(named: "lime"))
             imageView.contentMode = .scaleAspectFill
             return imageView
         }()
@@ -61,6 +111,7 @@ class QuizCenterVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
         refreshControl.addTarget(self, action: #selector(getQuizzes(_:)), for: .valueChanged)
         collectionView.addSubview(refreshControl)
         collectionView.alwaysBounceVertical = true
+        
         
 //        collectionView.collectionViewLayout = {
 //            let layout = UICollectionViewFlowLayout()
@@ -140,7 +191,6 @@ class QuizCenterVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
 }
 
 class QuizCenterRectCell: UICollectionViewCell {
-    @IBOutlet weak var backView: UIView!
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var title: UILabel!
 }
