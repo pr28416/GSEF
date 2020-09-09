@@ -17,11 +17,12 @@ class PodcastHomeVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.backgroundView = {
-            let imageView = UIImageView(image: UIImage(named: "bluepurple"))
-            imageView.contentMode = .scaleAspectFill
-            return imageView
-        }()
+//        tableView.backgroundView = {
+//            let imageView = UIImageView(image: UIImage(named: "bluepurple"))
+//            imageView.contentMode = .scaleAspectFill
+//            return imageView
+//        }()
+        tableView.backgroundColor = UIColor(named: Color.listViewDefault.rawValue)
         
         fs = Firestore.firestore()
         _ = retrievePodcasts()
@@ -92,8 +93,6 @@ class PodcastHomeVC: UITableViewController {
         cell.desc.text = podcasts[indexPath.row].desc
         cell.datePublished.text = "Published on \(Date.toString(date: podcasts[indexPath.row].datePublished, format: "MMM d, YYYY"))"
         
-        cell.backView.layer.cornerRadius = 15
-        
         return cell
     }
     
@@ -118,7 +117,7 @@ class PodcastHomeVC: UITableViewController {
 
 class PodcastCell: UITableViewCell {
     
-    @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var backView: ShadowView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var desc: UILabel!
     @IBOutlet weak var datePublished: UILabel!

@@ -29,7 +29,9 @@ class PodcastPreviewVC: UIViewController {
             i.layer.cornerRadius = i.bounds.width/2
         }
         for i in backViews {
-            i.layer.cornerRadius = 20
+            if i.tag == 1 {
+                i.backgroundColor = UIColor(named: Color.listViewDefault.rawValue)
+            }
         }
     }
     
@@ -51,7 +53,7 @@ class PodcastPreviewVC: UIViewController {
     }
     @IBOutlet var circleIcons: [UIImageView]!
     
-    @IBOutlet var backViews: [UIView]!
+    @IBOutlet var backViews: [ShadowView]!
     
     @IBAction func openSpotify(_ sender: UIButton) {
         openLink(podcast.spotifyLink)

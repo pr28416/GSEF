@@ -787,9 +787,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="darkblue" translatesAutoresizingMaskIntoConstraints="NO" id="zYr-EB-Yh3">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jr3-PZ-tHk">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
@@ -813,7 +810,7 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HUw-E8-xS5">
                                                 <rect key="frame" x="12" y="497.5" width="390" height="44"/>
-                                                <color key="backgroundColor" name="AccentDark1"/>
+                                                <color key="backgroundColor" name="Primary Blue"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="vzC-jd-xen"/>
                                                 </constraints>
@@ -863,11 +860,7 @@
                         <viewLayoutGuide key="safeArea" id="ZtD-f9-R8u"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="zYr-EB-Yh3" firstAttribute="trailing" secondItem="MQq-Ec-4CD" secondAttribute="trailing" id="C1H-Tc-Cj7"/>
-                            <constraint firstItem="zYr-EB-Yh3" firstAttribute="leading" secondItem="MQq-Ec-4CD" secondAttribute="leading" id="GB6-x2-b20"/>
                             <constraint firstItem="Jr3-PZ-tHk" firstAttribute="leading" secondItem="ZtD-f9-R8u" secondAttribute="leading" id="JA7-MT-du9"/>
-                            <constraint firstAttribute="bottom" secondItem="zYr-EB-Yh3" secondAttribute="bottom" id="Qkn-Bx-dmy"/>
-                            <constraint firstItem="zYr-EB-Yh3" firstAttribute="top" secondItem="MQq-Ec-4CD" secondAttribute="top" id="c8a-Yc-kdk"/>
                             <constraint firstItem="Jr3-PZ-tHk" firstAttribute="top" secondItem="ZtD-f9-R8u" secondAttribute="top" id="cGv-o5-sN6"/>
                             <constraint firstItem="Jr3-PZ-tHk" firstAttribute="trailing" secondItem="ZtD-f9-R8u" secondAttribute="trailing" id="mme-Y3-rSL"/>
                             <constraint firstItem="Jr3-PZ-tHk" firstAttribute="bottom" secondItem="ZtD-f9-R8u" secondAttribute="bottom" id="tTJ-tG-gZa"/>
@@ -1202,7 +1195,7 @@
             <objects>
                 <viewController id="MN6-fU-w6l" customClass="MultipleChoiceVC" customModule="GSEF" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3hV-IU-caZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="734"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MfQ-bY-hQE">
@@ -1692,35 +1685,35 @@
         <scene sceneID="QLD-6g-7m0">
             <objects>
                 <tableViewController id="Eud-cz-aYM" customClass="PodcastHomeVC" customModule="GSEF" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Gax-Of-QlA">
+                    <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Gax-Of-QlA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="podcastCell" id="BVT-vO-2GA" customClass="PodcastCell" customModule="GSEF" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="124.5"/>
+                            <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="podcastCell" id="BVT-vO-2GA" customClass="PodcastCell" customModule="GSEF" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="126"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BVT-vO-2GA" id="UdB-EJ-Tmo">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="124.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BVT-vO-2GA" id="UdB-EJ-Tmo">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="126"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yr5-0u-50i">
-                                            <rect key="frame" x="20" y="12" width="374" height="108.5"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yr5-0u-50i" customClass="ShadowView" customModule="GSEF" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="12" width="374" height="106"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Podcast Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsA-FT-AL7">
                                                     <rect key="frame" x="16" y="16" width="342" height="23"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                                    <color key="textColor" name="AccentDark1"/>
+                                                    <color key="textColor" name="Blue Label"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTj-ya-5qA">
-                                                    <rect key="frame" x="16" y="47" width="342" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="16" y="47" width="342" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" name="DarkText1"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date published" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKf-zL-3x9">
-                                                    <rect key="frame" x="16" y="75.5" width="342" height="17"/>
+                                                    <rect key="frame" x="16" y="73" width="342" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1745,13 +1738,13 @@
                                     <constraints>
                                         <constraint firstItem="yr5-0u-50i" firstAttribute="top" secondItem="UdB-EJ-Tmo" secondAttribute="top" constant="12" id="Fot-Ks-ntW"/>
                                         <constraint firstAttribute="trailing" secondItem="yr5-0u-50i" secondAttribute="trailing" constant="20" id="QZX-E8-HDn"/>
-                                        <constraint firstAttribute="bottom" secondItem="yr5-0u-50i" secondAttribute="bottom" constant="4" id="R0k-Mc-RYm"/>
+                                        <constraint firstAttribute="bottom" secondItem="yr5-0u-50i" secondAttribute="bottom" constant="8" id="R0k-Mc-RYm"/>
                                         <constraint firstItem="yr5-0u-50i" firstAttribute="leading" secondItem="UdB-EJ-Tmo" secondAttribute="leading" constant="20" id="XP4-DZ-4Bv"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <outlet property="backView" destination="yr5-0u-50i" id="5Cb-5S-Fy1"/>
+                                    <outlet property="backView" destination="yr5-0u-50i" id="Ljp-C7-lhp"/>
                                     <outlet property="datePublished" destination="tKf-zL-3x9" id="Efl-x7-Q9u"/>
                                     <outlet property="desc" destination="QTj-ya-5qA" id="VAF-Ew-cV5"/>
                                     <outlet property="title" destination="FsA-FT-AL7" id="KYX-E5-0MR"/>
@@ -1793,7 +1786,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="916"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
-                                <blurEffect style="regular"/>
+                                <blurEffect style="systemUltraThinMaterial"/>
                             </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RkH-dm-4aY">
                                 <rect key="frame" x="28" y="245" width="44" height="43"/>
@@ -1807,13 +1800,13 @@
                                     <action selector="close:" destination="rHt-a2-3Rs" eventType="touchUpInside" id="gdU-gE-htK"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUN-HJ-hvl">
+                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUN-HJ-hvl" customClass="ShadowView" customModule="GSEF" customModuleProvider="target">
                                 <rect key="frame" x="28" y="300.5" width="358" height="295.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Podcast Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Hq-Aw-aMb">
                                         <rect key="frame" x="20" y="20" width="318" height="27.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
-                                        <color key="textColor" name="AccentDark1"/>
+                                        <color key="textColor" name="Primary Blue"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="100" verticalCompressionResistancePriority="1000" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JE-kF-JFI">
@@ -1842,7 +1835,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="l3N-Hp-xhN">
                                         <rect key="frame" x="20" y="119.5" width="318" height="156"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azg-e2-pcD">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azg-e2-pcD" customClass="ShadowView" customModule="GSEF" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="318" height="72"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spotify" translatesAutoresizingMaskIntoConstraints="NO" id="SWq-y9-EWA">
@@ -1891,7 +1884,7 @@
                                                     <constraint firstItem="SWq-y9-EWA" firstAttribute="bottom" secondItem="azg-e2-pcD" secondAttribute="bottomMargin" id="sPn-Lj-IFb"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nIx-wM-zAb">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nIx-wM-zAb" customClass="ShadowView" customModule="GSEF" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="84" width="318" height="72"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="anchor" translatesAutoresizingMaskIntoConstraints="NO" id="aQ5-wy-Mxc">
@@ -1962,7 +1955,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="213-mu-It7"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="WUN-HJ-hvl" secondAttribute="bottom" constant="20" id="3YA-lg-cqX"/>
                             <constraint firstItem="RkH-dm-4aY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="213-mu-It7" secondAttribute="top" constant="20" id="9Oz-Rh-Ts3"/>
@@ -1986,9 +1979,9 @@
                         <outlet property="timeLabel" destination="hbq-hV-6a6" id="Nc1-q2-Wc0"/>
                         <outlet property="titleLabel" destination="9Hq-Aw-aMb" id="y0B-e4-2w8"/>
                         <outletCollection property="circleIcons" destination="aQ5-wy-Mxc" collectionClass="NSMutableArray" id="Oym-z4-c8G"/>
-                        <outletCollection property="backViews" destination="nIx-wM-zAb" collectionClass="NSMutableArray" id="4NF-5p-b1k"/>
-                        <outletCollection property="backViews" destination="azg-e2-pcD" collectionClass="NSMutableArray" id="PiH-cX-2fe"/>
-                        <outletCollection property="backViews" destination="WUN-HJ-hvl" collectionClass="NSMutableArray" id="EGr-AT-brx"/>
+                        <outletCollection property="backViews" destination="WUN-HJ-hvl" collectionClass="NSMutableArray" id="bKI-2W-SCv"/>
+                        <outletCollection property="backViews" destination="azg-e2-pcD" collectionClass="NSMutableArray" id="Epf-b4-Rs2"/>
+                        <outletCollection property="backViews" destination="nIx-wM-zAb" collectionClass="NSMutableArray" id="uqI-xL-YrU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ulg-FC-6eO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2003,11 +1996,15 @@
                         <imageReference key="image" image="app_waveform.circle" symbolScale="default"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="BIq-ec-zKK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="BIq-ec-zKK">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" name="Primary Blue"/>
+                        </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                            <color key="textColor" name="Primary Blue"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2030,7 +2027,6 @@
         <image name="app_newspaper" width="15" height="14"/>
         <image name="app_waveform.circle" width="13" height="13"/>
         <image name="chevron.compact.down" catalog="system" width="128" height="43"/>
-        <image name="darkblue" width="500" height="500"/>
         <image name="gsef" width="4000" height="1440"/>
         <image name="lime" width="500" height="500"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>

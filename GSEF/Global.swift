@@ -44,6 +44,19 @@ extension UserDefaults: ObjectSavable {
     }
 }
 
+enum Color: String {
+    case listViewDefault = "List View Default"
+    case listViewInverted = "List View Inverted"
+    case listCellDefault = "List Cell Default"
+    case listCellInverted = "List Cell Inverted"
+    case blueLabel = "Blue Label"
+    case primaryBlue = "Primary Blue"
+    case primaryGreen = "Primary Green"
+    case primaryRed = "Primary Red"
+    case primaryYellow = "Primary Yellow"
+}
+
+
 class ShadowView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
