@@ -48,7 +48,7 @@ class QuizCenterVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "openQuiz" {
             let VC = segue.destination as! QuizCategoryVC
-            VC.quiz = sender as! Quiz
+            VC.quiz = (sender as! Quiz)
         }
     }
     

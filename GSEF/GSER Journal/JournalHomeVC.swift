@@ -21,13 +21,16 @@ class JournalHomeVC: UITableViewController {
         cell.title.text = journals[indexPath.row].title
         cell.editor.text = "Chief Editor: \(journals[indexPath.row].editor)"
         cell.desc.text = journals[indexPath.row].desc
-        cell.backView.layer.cornerRadius = 12
-        cell.backImage.layer.cornerRadius = 12
+//        cell.backView.layer.cornerRadius = 12
         cell.numArticles.layer.cornerRadius = 12
         cell.numArticles.layer.masksToBounds = true
         cell.numArticles.text = "\(journals[indexPath.row].articles.count)"
         
+        
         cell.backgroundColor = .clear
+        
+        cell.layoutIfNeeded()
+        cell.backView.layoutIfNeeded()
         return cell
     }
     
@@ -45,11 +48,12 @@ class JournalHomeVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundView = {
-            let imageView = UIImageView(image: UIImage(named: "deepblue"))
-            imageView.contentMode = .scaleAspectFill
-            return imageView
-        }()
+//        tableView.backgroundView = {
+//            let imageView = UIImageView(image: UIImage(named: "deepblue"))
+//            imageView.contentMode = .scaleAspectFill
+//            return imageView
+//        }()
+        tableView.backgroundColor = UIColor(named: "List View Default")
         
         fs = Firestore.firestore()
 
@@ -172,7 +176,6 @@ class JournalCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var editor: UILabel!
     @IBOutlet weak var desc: UILabel!
-    @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var backView: ShadowView!
     @IBOutlet weak var numArticles: UILabel!
-    @IBOutlet weak var backImage: UIImageView!
 }

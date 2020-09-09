@@ -21,9 +21,7 @@ class ArticlesVC: UITableViewController {
         cell.title.text = journal.articles[indexPath.row].title
         cell.editor.text = journal.articles[indexPath.row].editor
         cell.dateCreated.text = "Published on \(Date.toString(date: journal.articles[indexPath.row].dateCreated, format: "MMM d, YYYY"))"
-        cell.backImage.layer.cornerRadius = 12
-        cell.backgroundColor = .clear
-        cell.contentView.backgroundColor = .clear
+
         return cell
     }
     
@@ -34,20 +32,20 @@ class ArticlesVC: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "openArticle" {
             let VC = segue.destination as! OpenArticleVC
-            VC.article = sender as! Article
+            VC.article = (sender as! Article)
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = journal.title
-        tableView.backgroundView = {
-            let imageView = UIImageView(image: UIImage(named: "deepblue"))
-            imageView.contentMode = .scaleAspectFill
-            return imageView
-        }()
+//        tableView.backgroundView = {
+//            let imageView = UIImageView(image: UIImage(named: "deepblue"))
+//            imageView.contentMode = .scaleAspectFill
+//            return imageView
+//        }()
+        tableView.backgroundColor = UIColor(named: "List View Default")
         tableView.tableFooterView = UIView()
-        tableView.backgroundColor = .clear
         journal.articles = Journal.sortArticles(articles: journal.articles)
     }
     
@@ -88,7 +86,7 @@ class OpenArticleVC: UIViewController {
 
 class ArticleCell: UITableViewCell {
     
-    @IBOutlet weak var backImage: UIImageView!
+    @IBOutlet weak var backView: UIView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var editor: UILabel!
     @IBOutlet weak var dateCreated: UILabel!

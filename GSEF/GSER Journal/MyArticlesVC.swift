@@ -16,11 +16,12 @@ class MyArticlesVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.backgroundView = {
-            let imageView = UIImageView(image: UIImage(named: "deepblue"))
-            imageView.contentMode = .scaleAspectFill
-            return imageView
-        }()
+//        tableView.backgroundView = {
+//            let imageView = UIImageView(image: UIImage(named: "deepblue"))
+//            imageView.contentMode = .scaleAspectFill
+//            return imageView
+//        }()
+        tableView.backgroundColor = UIColor(named: "List View Default")
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: NSNotification.Name("reloadTableView"), object: nil)
         
@@ -106,7 +107,7 @@ class MyArticlesVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let text = view as! UITableViewHeaderFooterView
-        text.textLabel?.textColor = .white
+        text.textLabel?.textColor = UIColor(named: "List View Inverted")
         let attributedText = NSMutableAttributedString(string: text.textLabel?.text ?? "", attributes: [
             NSAttributedString.Key.paragraphStyle: {
                 let style = NSMutableParagraphStyle()
@@ -135,7 +136,8 @@ class MyArticlesVC: UITableViewController {
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! MyArticleCell
-        cell.title.text = articles[indexPath.row].title
+        let t = articles[indexPath.row].title
+        cell.title.text = t.count == 0 ? "Unnamed" : t
         cell.lastEdited.text = Date.toString(date: articles[indexPath.row].dateCreated, format: "MMM dd, YYYY")
         return cell
     }

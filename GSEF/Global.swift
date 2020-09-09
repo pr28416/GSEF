@@ -6,7 +6,7 @@
 //  Copyright © 2020 Pranav Ramesh. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol ObjectSavable {
     func setObject<Object>(_ object: Object, forKey: String) throws where Object: Encodable
@@ -41,6 +41,37 @@ extension UserDefaults: ObjectSavable {
         case unableToDecode = "Unable to decode object into given type"
         
         var errorDescription: String? {rawValue}
+    }
+}
+
+class ShadowView: UIView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+    
+    override func layoutSubviews() {
+        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 12).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
+    }
+    
+    func setup() {
+        clipsToBounds = false
+        backgroundColor = UIColor(named: "List Cell Default")
+        layer.shadowColor = UIColor(red: 12/255, green: 21/255, blue: 38/255, alpha: 1).cgColor
+        layer.shadowRadius = 4
+        layer.cornerRadius = 12
+        layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.shadowOpacity = 0.15
+        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 12).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
     }
 }
 

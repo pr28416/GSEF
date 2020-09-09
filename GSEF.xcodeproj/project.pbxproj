@@ -127,8 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				82A318AE24E03DD6006BE727 /* JournalHomeVC.swift */,
-				82D66DE424FAACB500C96A9F /* MyArticlesVC.swift */,
 				82A318C224E05F6B006BE727 /* ArticlesVC.swift */,
+				82D66DE424FAACB500C96A9F /* MyArticlesVC.swift */,
 				82D66DE624FAB7E100C96A9F /* EditArticleVC.swift */,
 				8256DEC024FEAF96006081AD /* ArticleSubmissionVC.swift */,
 			);
