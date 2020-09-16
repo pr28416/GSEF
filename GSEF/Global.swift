@@ -56,6 +56,43 @@ enum Color: String {
     case primaryYellow = "Primary Yellow"
 }
 
+extension UIColor {
+    static func new(named color: Color) -> UIColor {
+        return UIColor(named: color.rawValue) ?? UIColor()
+    }
+}
+
+class ShadowCell: UICollectionViewCell {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+    
+    override func layoutSubviews() {
+        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 12).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
+    }
+    
+    func setup() {
+        clipsToBounds = false
+        backgroundColor = UIColor.new(named: .listCellDefault)
+        layer.shadowColor = UIColor(red: 12/255, green: 21/255, blue: 38/255, alpha: 1).cgColor
+        layer.shadowRadius = 4
+        layer.cornerRadius = 15
+        layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.shadowOpacity = 0.15
+        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 12).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
+    }
+}
+
 
 class ShadowView: UIView {
     override init(frame: CGRect) {
@@ -76,10 +113,10 @@ class ShadowView: UIView {
     
     func setup() {
         clipsToBounds = false
-        backgroundColor = UIColor(named: "List Cell Default")
+        backgroundColor = UIColor.new(named: .listCellDefault)
         layer.shadowColor = UIColor(red: 12/255, green: 21/255, blue: 38/255, alpha: 1).cgColor
         layer.shadowRadius = 4
-        layer.cornerRadius = 12
+        layer.cornerRadius = 15
         layer.shadowOffset = CGSize(width: 0, height: 4)
         layer.shadowOpacity = 0.15
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 12).cgPath
@@ -94,18 +131,29 @@ class Podcast: Codable {
     var host: String
     var datePublished: Date
     var length: String
+    var image: Data? {
+        didSet {
+            print("image data set to:", image)
+        }
+    }
+    var imageName: String
     
     var spotifyLink: String
     var anchorLink: String
     
-    init(title: String, desc: String, host: String, datePublished: Date, length: String, spotifyLink: String, anchorLink: String) {
+    init(title: String, desc: String, host: String, datePublished: Date, length: String, imageName: String, spotifyLink: String, anchorLink: String) {
         self.title = title
         self.desc = desc
         self.host = host
         self.datePublished = datePublished
         self.length = length
+        self.imageName = imageName
         self.spotifyLink = spotifyLink
         self.anchorLink = anchorLink
+    }
+    
+    func getImage() -> UIImage? {
+        return UIImage(data: image ?? Data())
     }
 }
 
@@ -245,8 +293,8 @@ func savePodcasts() -> Bool {
     let userDefaults = UserDefaults.standard
     do {
         try userDefaults.setObject(podcasts, forKey: "podcasts")
+        print("Successfully saved podcasts")
         return true
-//        print("Successfully saved myArticles")
     } catch {
         print(error.localizedDescription)
         return false
@@ -257,8 +305,8 @@ func retrievePodcasts() -> Bool {
     let userDefaults = UserDefaults.standard
     do {
         podcasts = try userDefaults.getObject(forKey: "podcasts", castTo: [Podcast].self)
+        print("Successfully retrieved podcasts")
         return true
-//        print("Successfully retrieved myArticles")
     } catch {
         print(error.localizedDescription)
         return false

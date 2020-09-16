@@ -16,6 +16,8 @@ class PodcastPreviewVC: UIViewController {
     @IBOutlet weak var publishedLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var backBlur: UIVisualEffectView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var hostLabel: UILabel!
     
     
     @IBAction func close(_ sender: Any) {
@@ -49,6 +51,9 @@ class PodcastPreviewVC: UIViewController {
         descLabel.text = podcast.desc
         publishedLabel.text = Date.toString(date: podcast.datePublished, format: "MMM d, YYYY")
         timeLabel.text = podcast.length
+        imageView.image = podcast.getImage()
+        imageView.alpha = 0.4
+        hostLabel.text = "Hosted by \(podcast.host)"
         view.isOpaque = false
     }
     @IBOutlet var circleIcons: [UIImageView]!

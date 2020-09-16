@@ -8,6 +8,7 @@ target 'GSEF' do
   # Pods for GSEF
   pod 'Firebase/Analytics'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
   pod 'Alamofire'
   pod 'ActivityIndicatorController'
 

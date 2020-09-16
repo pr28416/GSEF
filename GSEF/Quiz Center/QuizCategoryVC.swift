@@ -34,15 +34,16 @@ class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QuizCell", for: indexPath) as! QuizCategoryCVC
         cell.title.text = practiceOptions[indexPath.row].title
         cell.image.image = practiceOptions[indexPath.row].image
-        cell.backView.layer.cornerRadius = 20
+//        cell.backView.layer.cornerRadius = 20
         
-        cell.layer.cornerRadius = 20
-        cell.layer.shadowColor = UIColor(red: 28/255, green: 28/255, blue: 30/255, alpha: 1).cgColor
-        cell.layer.shadowOffset = CGSize(width: 0, height: 8)
-        cell.layer.shadowRadius = 20
-        cell.layer.shadowOpacity = 0.25
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: 20).cgPath
-        cell.layer.masksToBounds = false
+//        cell.layer.cornerRadius = 20
+//        cell.layer.shadowColor = UIColor(red: 28/255, green: 28/255, blue: 30/255, alpha: 1).cgColor
+//        cell.layer.shadowOffset = CGSize(width: 0, height: 8)
+//        cell.layer.shadowRadius = 20
+//        cell.layer.shadowOpacity = 0.25
+//        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: 20).cgPath
+//        cell.layer.masksToBounds = false
+        cell.backgroundColor = UIColor.new(named: .primaryBlue)
         
         return cell
     }
@@ -66,8 +67,7 @@ class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    @IBOutlet weak var mainBackView: UIView!
-    @IBOutlet weak var mainBackImage: UIImageView!
+    @IBOutlet weak var mainBackView: ShadowView!
     var quiz: Quiz!
     
     var practiceOptions: [PracticeOption] = [
@@ -82,16 +82,19 @@ class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = quiz.title
-        mainBackView.layer.cornerRadius = 20
-        mainBackView.layer.shadowColor = UIColor(red: 28/255, green: 28/255, blue: 30/255, alpha: 1).cgColor
-        mainBackView.layer.shadowOffset = CGSize(width: 0, height: 20)
-        mainBackView.layer.shadowRadius = 28
-        mainBackView.layer.shadowOpacity = 0.5
         
-        collectionView.clipsToBounds = false
-        tableView.layer.cornerRadius = 20
-        tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        tableView.clipsToBounds = true
+        view.backgroundColor = UIColor.new(named: .listViewDefault)
+        
+//        mainBackView.layer.cornerRadius = 20
+//        mainBackView.layer.shadowColor = UIColor(red: 28/255, green: 28/255, blue: 30/255, alpha: 1).cgColor
+//        mainBackView.layer.shadowOffset = CGSize(width: 0, height: 20)
+//        mainBackView.layer.shadowRadius = 28
+//        mainBackView.layer.shadowOpacity = 0.5
+//
+//        collectionView.clipsToBounds = false
+//        tableView.layer.cornerRadius = 20
+//        tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+//        tableView.clipsToBounds = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -107,7 +110,7 @@ class QuizCategoryTVC: UITableViewCell {
     @IBOutlet weak var definition: UILabel!
 }
 
-class QuizCategoryCVC: UICollectionViewCell {
+class QuizCategoryCVC: ShadowCell {
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var image: UIImageView!

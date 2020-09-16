@@ -19,24 +19,24 @@ class QuizCenterVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QuizCenterCell", for: indexPath) as! QuizCenterRectCell
 //        cell.backView.layer.cornerRadius = 10
-        cell.layer.cornerRadius = 15
-        cell.backgroundView = {
-            let imageView = UIImageView(image: UIImage(named: "cellgray"))
-            imageView.contentMode = .scaleAspectFill
-            return imageView
-        }()
-        cell.backgroundView?.clipsToBounds = true
-        cell.backgroundView?.layer.cornerRadius = 15
+//        cell.layer.cornerRadius = 15
+//        cell.backgroundView = {
+//            let imageView = UIImageView(image: UIImage(named: "cellgray"))
+//            imageView.contentMode = .scaleAspectFill
+//            return imageView
+//        }()
+//        cell.backgroundView?.clipsToBounds = true
+//        cell.backgroundView?.layer.cornerRadius = 15
         cell.title.text = quizCategories[indexPath.row].title
         cell.icon.image = UIImage(named: quizCategories[indexPath.row].imageName)
-        
-//        cell.layer.cornerRadius = 20
-        cell.layer.shadowColor = UIColor(red: 28/255, green: 28/255, blue: 30/255, alpha: 1).cgColor
-        cell.layer.shadowOffset = CGSize(width: 0, height: 12)
-        cell.layer.shadowRadius = 20
-        cell.layer.shadowOpacity = 0.3
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: 20).cgPath
-        cell.layer.masksToBounds = false
+//
+////        cell.layer.cornerRadius = 20
+//        cell.layer.shadowColor = UIColor(red: 28/255, green: 28/255, blue: 30/255, alpha: 1).cgColor
+//        cell.layer.shadowOffset = CGSize(width: 0, height: 12)
+//        cell.layer.shadowRadius = 20
+//        cell.layer.shadowOpacity = 0.3
+//        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: 20).cgPath
+//        cell.layer.masksToBounds = false
         
         return cell
     }
@@ -100,11 +100,12 @@ class QuizCenterVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
         
         collectionView.delegate = self
         
-        collectionView.backgroundView = {
-            let imageView = UIImageView(image: UIImage(named: "lime"))
-            imageView.contentMode = .scaleAspectFill
-            return imageView
-        }()
+//        collectionView.backgroundView = {
+//            let imageView = UIImageView(image: UIImage(named: "lime"))
+//            imageView.contentMode = .scaleAspectFill
+//            return imageView
+//        }()
+        collectionView.backgroundColor = UIColor.new(named: .listViewDefault)
         
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .secondaryLabel
@@ -190,7 +191,7 @@ class QuizCenterVC: UICollectionViewController, UICollectionViewDelegateFlowLayo
 
 }
 
-class QuizCenterRectCell: UICollectionViewCell {
+class QuizCenterRectCell: ShadowCell {
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var title: UILabel!
 }
