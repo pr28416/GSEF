@@ -51,18 +51,20 @@ class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0: self.performSegue(withIdentifier: "openMultipleChoice", sender: quiz)
-        case 1:
+        case 1: self.performSegue(withIdentifier: "openTypingTest", sender: quiz)
+        default:
             let alert = UIAlertController(title: "More coming soon!", message: "More features will be coming soon to Practice Options!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             present(alert, animated: true, completion: nil)
-//        case 1: self.performSegue(withIdentifier: "openFlashcards", sender: quiz)
-        default: break
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "openMultipleChoice" {
             let VC = (segue.destination as! UINavigationController).viewControllers[0] as! MultipleChoiceVC
+            VC.quiz = (sender as! Quiz)
+        } else if segue.identifier == "openTypingTest" {
+            let VC = (segue.destination as! UINavigationController).viewControllers[0] as! TypingTestVC
             VC.quiz = (sender as! Quiz)
         }
     }
@@ -72,8 +74,7 @@ class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var practiceOptions: [PracticeOption] = [
         PracticeOption(title: "Multiple Choice", image: UIImage(systemName: "list.bullet")),
-//        PracticeOption(title: "Matching", image: UIImage(systemName: "rectangle.righthalf.inset.fill.arrow.right"))
-//        PracticeOption(title: "Flashcards", image: UIImage(systemName: "rectangle.stack.fill"))
+        PracticeOption(title: "Typing Test", image: UIImage(systemName: "keyboard")),
         PracticeOption(title: "More coming soon!", image: UIImage(named: "app_atom"))
     ]
     @IBOutlet weak var tableView: UITableView!
@@ -84,22 +85,9 @@ class QuizCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.title = quiz.title
         
         view.backgroundColor = UIColor.new(named: .listViewDefault)
-        
-//        mainBackView.layer.cornerRadius = 20
-//        mainBackView.layer.shadowColor = UIColor(red: 28/255, green: 28/255, blue: 30/255, alpha: 1).cgColor
-//        mainBackView.layer.shadowOffset = CGSize(width: 0, height: 20)
-//        mainBackView.layer.shadowRadius = 28
-//        mainBackView.layer.shadowOpacity = 0.5
-//
-//        collectionView.clipsToBounds = false
-//        tableView.layer.cornerRadius = 20
-//        tableView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-//        tableView.clipsToBounds = true
     }
     
     override func viewDidLayoutSubviews() {
-        
-        
         mainBackView.layer.shadowPath = UIBezierPath(roundedRect: mainBackView.bounds, cornerRadius: 20).cgPath
     }
     

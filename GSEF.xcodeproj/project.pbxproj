@@ -23,6 +23,7 @@
 		82A318BF24E043CE006BE727 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A318BE24E043CE006BE727 /* Global.swift */; };
 		82A318C124E044EF006BE727 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82A318C024E044EF006BE727 /* GoogleService-Info.plist */; };
 		82A318C324E05F6B006BE727 /* ArticlesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A318C224E05F6B006BE727 /* ArticlesVC.swift */; };
+		82D32CD82520C86800E60552 /* TypingTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D32CD72520C86800E60552 /* TypingTestVC.swift */; };
 		82D66DE524FAACB500C96A9F /* MyArticlesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D66DE424FAACB500C96A9F /* MyArticlesVC.swift */; };
 		82D66DE724FAB7E100C96A9F /* EditArticleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D66DE624FAB7E100C96A9F /* EditArticleVC.swift */; };
 		82DCC58D24E49B3E00075780 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DCC58C24E49B3E00075780 /* AboutVC.swift */; };
@@ -48,6 +49,7 @@
 		82A318BE24E043CE006BE727 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		82A318C024E044EF006BE727 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		82A318C224E05F6B006BE727 /* ArticlesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesVC.swift; sourceTree = "<group>"; };
+		82D32CD72520C86800E60552 /* TypingTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingTestVC.swift; sourceTree = "<group>"; };
 		82D66DE424FAACB500C96A9F /* MyArticlesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyArticlesVC.swift; sourceTree = "<group>"; };
 		82D66DE624FAB7E100C96A9F /* EditArticleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditArticleVC.swift; sourceTree = "<group>"; };
 		82DCC58C24E49B3E00075780 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				825352FD24E1A0F1002B4565 /* QuizCenterVC.swift */,
 				825352FF24E1BA03002B4565 /* QuizCategoryVC.swift */,
 				8272B16E24E42377009B1422 /* MultipleChoiceVC.swift */,
+				82D32CD72520C86800E60552 /* TypingTestVC.swift */,
 			);
 			path = "Quiz Center";
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				8253530024E1BA03002B4565 /* QuizCategoryVC.swift in Sources */,
 				82A318AF24E03DD6006BE727 /* JournalHomeVC.swift in Sources */,
 				825352FE24E1A0F1002B4565 /* QuizCenterVC.swift in Sources */,
+				82D32CD82520C86800E60552 /* TypingTestVC.swift in Sources */,
 				82DCC58D24E49B3E00075780 /* AboutVC.swift in Sources */,
 				8245FF962505288F00275C04 /* PodcastHomeVC.swift in Sources */,
 				82A318AB24E03DD6006BE727 /* AppDelegate.swift in Sources */,
